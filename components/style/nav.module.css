@@ -1,0 +1,25 @@
+.header {
+    position: fixed;
+    top: 0.25rem;
+    left: 0.25rem;
+    right: 0.25rem;
+    width: calc(100svw - 0.5rem);
+    display: flex;
+    /* gap: 1rem; */
+    /* padding: 1rem; */
+    font-family: monospace;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.6);
+    border-radius: 0.25rem;
+}
+
+.header > * {
+    padding: 1rem;
+    border-right: 1px solid white;
+    color: white;
+    transition: background 0.4s ease-in-out;
+}
+
+.header > *:hover {
+    background: rgba(0,0,0,0.2);
+}
