@@ -15,36 +15,42 @@ export default async function MusingsPage() {
   });
 
   return (
-    
-      Musings
-      
+    <div>
+      <h1>Musings</h1>
+      <div>
         {sortedMusings.map((musing) => (
-          
-            
+          <Link 
+            key={musing.slug}
+            href={`/musings/${musing.slug}`}
+          >
+            <article>
               {musing.entry.featuredImage && (
-                
-                  
-                
+                <div style={{ position: 'relative', width: '200px', height: '130px' }}>
+                  <Image
+                    src={musing.entry.featuredImage}
+                    alt={musing.entry.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
               )}
-              
-                
-                  {musing.entry.title}
-                
-                {musing.entry.excerpt}
+              <div>
+                <h2>{musing.entry.title}</h2>
+                <p>{musing.entry.excerpt}</p>
                 {musing.entry.publishedDate && (
-                  
+                  <time>
                     {new Date(musing.entry.publishedDate).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'
                     })}
-                  
+                  </time>
                 )}
-              
-            
-          
+              </div>
+            </article>
+          </Link>
         ))}
-      
-    
+      </div>
+    </div>
   );
 }

@@ -65,12 +65,7 @@ export default async function MusingPage({
       {musing.audioUrl && (
         <div>
           <p>Listen to this musing:</p>
-          <ReactPlayer 
-            url={musing.audioUrl || ''} 
-            controls 
-            width="100%"
-            height="60px"
-          />
+          
         </div>
       )}
 

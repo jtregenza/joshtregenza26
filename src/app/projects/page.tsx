@@ -15,23 +15,29 @@ export default async function ProjectsPage() {
   });
 
   return (
-    
-      Projects
-      
+    <div>
+      <h1>Projects</h1>
+      <div>
         {sortedProjects.map((project) => (
-          
+          <Link 
+            key={project.slug}
+            href={`/projects/${project.slug}`}
+          >
             {project.entry.featuredImage && (
-              
-                
-              
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+                <Image
+                  src={project.entry.featuredImage}
+                  alt={project.entry.title}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
             )}
-            
-              {project.entry.title}
-            
-            {project.entry.description}
-          
+            <h2>{project.entry.title}</h2>
+            <p>{project.entry.description}</p>
+          </Link>
         ))}
-      
-    
+      </div>
+    </div>
   );
 }
