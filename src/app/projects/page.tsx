@@ -6,7 +6,7 @@ import { createReader } from '@keystatic/core/reader';
 
 export default async function ProjectsPage() {
 
-  const projects = await createReader(process.cwd(), keystaticConfig).collections.projects;
+  const projects = await createReader(process.cwd(), keystaticConfig).collections.projects.all();
   
   // Sort by date
   const sortedProjects = projects.sort((a, b) => 

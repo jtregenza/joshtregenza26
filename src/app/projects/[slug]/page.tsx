@@ -1,5 +1,5 @@
 import { reader } from '@keystatic/core/reader';
-import keystaticConfig from '/keystatic.config';
+import keystaticConfig from '../../../../keystatic.config';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
