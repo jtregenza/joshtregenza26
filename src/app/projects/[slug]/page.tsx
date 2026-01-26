@@ -1,11 +1,17 @@
-import { reader } from '@keystatic/core/reader';
+import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../../../keystatic.config';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import ReactPlayer from 'react-player';
+import Markdoc from '@markdoc/markdoc';
+import React from 'react';
+import dynamic from 'next/dynamic';
+
+const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
+
+const reader = createReader(process.cwd(), keystaticConfig);
 
 export async function generateStaticParams() {
-  const projects = await reader(keystaticConfig).collections.projects.all();
+  const projects = await reader.collections.projects.all();
   return projects.map((project) => ({
     slug: project.slug,
   }));
@@ -14,13 +20,22 @@ export async function generateStaticParams() {
 export default async function ProjectPage({ 
   params 
 }: { 
-  params: { slug: string } 
+  params: Promise 
 }) {
-  const project = await reader(keystaticConfig).collections.projects.read(params.slug);
+  const { slug } = await params;
+  const project = await reader.collections.projects.read(slug);
   
   if (!project) notFound();
 
-  const content = await project.content();
+  const { node } = await project.content();
+  const errors = Markdoc.validate(node);
+  
+  if (errors.length) {
+    console.error(errors);
+    throw new Error('Invalid content');
+  }
+  
+  const renderable = Markdoc.transform(node);
 
   return (
     
@@ -59,7 +74,7 @@ export default async function ProjectPage({
       )}
 
       
-        {content}
+        {Markdoc.renderers.react(renderable, React)}
       
 
       {project.tags && project.tags.length > 0 && (

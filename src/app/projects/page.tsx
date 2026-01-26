@@ -1,17 +1,18 @@
-
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../../keystatic.config';
 import Link from 'next/link';
 import Image from 'next/image';
-import keystaticConfig from '../../../keystatic.config';
-import { createReader } from '@keystatic/core/reader';
+
+const reader = createReader(process.cwd(), keystaticConfig);
 
 export default async function ProjectsPage() {
-
-  const projects = await createReader(process.cwd(), keystaticConfig).collections.projects.all();
+  const projects = await reader.collections.projects.all();
   
-  // Sort by date
-  const sortedProjects = projects.sort((a, b) => 
-    new Date(b.entry.date).getTime() - new Date(a.entry.date).getTime()
-  );
+  const sortedProjects = projects.sort((a, b) => {
+    const dateA = a.entry.date ? new Date(a.entry.date).getTime() : 0;
+    const dateB = b.entry.date ? new Date(b.entry.date).getTime() : 0;
+    return dateB - dateA;
+  });
 
   return (
     

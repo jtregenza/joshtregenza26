@@ -2,13 +2,10 @@ import { config, fields, collection } from '@keystatic/core';
 
 export default config({
   storage: {
-    kind: 'github',
-        repo: {
-            owner: 'jtregenza',
-            name: 'joshtregenza26'
-        }   
-  },
-  collections: {
+  kind: process.env.NODE_ENV === 'development' ? 'local' : 'github',
+  repo: 'jtregenza/joshtregenza26',
+},
+    collections: {
     projects: collection({
       label: 'Projects',
       slugField: 'title',
@@ -49,14 +46,13 @@ export default config({
           label: 'Audio URL',
           validation: { isRequired: false },
         }),
-        content: fields.document({
+        content: fields.markdoc({
           label: 'Content',
-          formatting: true,
-          dividers: true,
-          links: true,
-          images: {
-            directory: 'public/images/projects',
-            publicPath: '/images/projects/',
+          options: {
+            image: {
+              directory: 'public/images/projects',
+              publicPath: '/images/projects/',
+            },
           },
         }),
       },
@@ -90,14 +86,13 @@ export default config({
           label: 'Audio URL (for podcast-style musings)',
           validation: { isRequired: false },
         }),
-        content: fields.document({
+        content: fields.markdoc({
           label: 'Content',
-          formatting: true,
-          dividers: true,
-          links: true,
-          images: {
-            directory: 'public/images/musings',
-            publicPath: '/images/musings/',
+          options: {
+            image: {
+              directory: 'public/images/musings',
+              publicPath: '/images/musings/',
+            },
           },
         }),
       },
