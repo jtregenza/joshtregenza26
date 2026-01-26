@@ -1,25 +1,86 @@
 .header {
     position: fixed;
-    top: 0.5rem;
+    bottom: 0.5rem;
     left: 0.5rem;
-    right: 0.5rem;
-    width: calc(100svw - 1rem);
+    right: 0.75rem;
+    width: calc(100svw - 1.5rem);
     display: flex;
     /* gap: 1rem; */
     /* padding: 1rem; */
+    padding-left: 2rem;
     font-family: monospace;
     font-size: 1rem;
-    background: rgba(255,255,255,0.6);
-    border-radius: 0.25rem;
+    background: rgba(255,255,255,1);
+    border-radius: 100rem;
+    align-items: center;
 }
 
-.header > * {
+.header > a {
     padding: 1rem;
-    border-right: 1px solid white;
-    color: white;
+    border-right: 2px solid grey;
+    color: black;
+    white-space: nowrap;
+    height: 100%;
     transition: background 0.4s ease-in-out;
 }
 
-.header > *:hover {
+.header > a:hover {
     background: rgba(0,0,0,0.2);
+}
+
+
+.tickerWrap {
+    width: 100%;
+    overflow: hidden;
+    /* display: flex; */
+    height: 100%;
+    /* align-items: center; */
+    padding-left: 100%;
+}
+.ticker {
+    display: inline-block;
+    color: gray;
+    overflow: hidden;
+    padding-right: 100%;
+    /* width: 75svw; */
+    white-space: nowrap;
+    -webkit-animation-iteration-count: infinite; 
+            animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+   -webkit-animation-name: ticker;
+           animation-name: ticker;
+    -webkit-animation-duration: 30s;
+            animation-duration: 30s;
+}
+
+.tickerItem {
+    display: inline-block;
+    padding-right: 1rem;
+}
+
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
 }

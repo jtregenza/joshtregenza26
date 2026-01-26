@@ -1,7 +1,15 @@
+'use client'
 import Link from "next/link";
 import styles from './style/nav.module.css'
+import Ticker from "./Ticker";
 
-export default function Nav() {
+
+
+interface NavProps {
+  cmsMessages: readonly string[]; // Changed from string[] to readonly string[]
+}
+
+export default function Nav({ cmsMessages }: NavProps) {
   return (
     <header className={styles.header}>
         <Link href="/">Home</Link>
@@ -11,6 +19,7 @@ export default function Nav() {
         <Link href="/musings">Musings</Link>
         <Link href="/process">Process</Link>
         <Link href="/contact">Contact</Link>
+        <Ticker cmsMessages={cmsMessages}/>
     </header>
 )
 }

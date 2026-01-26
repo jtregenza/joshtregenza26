@@ -1,10 +1,25 @@
-import { config, fields, collection } from '@keystatic/core';
+import { config, fields, collection, singleton } from '@keystatic/core';
 
 export default config({
   storage: {
   kind: process.env.NODE_ENV === 'development' ? 'local' : 'github',
   repo: 'jtregenza/joshtregenza26',
 },
+singletons: {
+    settings: singleton({
+      label: 'Site Settings',
+      path: 'content/settings',
+      schema: {
+        tickerMessages: fields.array(
+          fields.text({ label: 'Message' }),
+          {
+            label: 'Ticker Messages',
+            itemLabel: props => props.value,
+          }
+        ),
+      },
+    }),
+  },
     collections: {
     projects: collection({
       label: 'Projects',
