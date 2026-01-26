@@ -1,9 +1,9 @@
 .header {
     position: fixed;
-    top: 0.25rem;
-    left: 0.25rem;
-    right: 0.25rem;
-    width: calc(100svw - 0.5rem);
+    top: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    width: calc(100svw - 1rem);
     display: flex;
     /* gap: 1rem; */
     /* padding: 1rem; */
