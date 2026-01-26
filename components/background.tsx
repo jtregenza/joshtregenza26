@@ -41,6 +41,7 @@ export default function TimeBasedGradient() {
   const granimRef = useRef<any>(null)
   const [currentPeriod, setCurrentPeriod] = useState<string>('')
   const [noiseSpeed, setNoiseSpeed] = useState<number>(20)
+  const [isMounted, setIsMounted] = useState(false)
 
   // Time-based gradient configurations
   const gradientConfigs: GradientConfigs = {
@@ -96,17 +97,24 @@ export default function TimeBasedGradient() {
     return gradientConfigs.night
   }
 
+  // Mount effect
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   // Separate effect for noise speed updates
   useEffect(() => {
+    if (!isMounted) return
+    
     const noise = noiseRef.current
     if (!noise || !noise.style.backgroundImage) return
 
     noise.style.animation = `grained 0.4s steps(${noiseSpeed}, end) infinite`
-  }, [noiseSpeed])
+  }, [noiseSpeed, isMounted])
 
   // Main initialization effect
   useEffect(() => {
-    if (typeof window === 'undefined') return
+    if (!isMounted) return
 
     const config = getTimeBasedGradient()
     setCurrentPeriod(config.name)
@@ -204,6 +212,7 @@ export default function TimeBasedGradient() {
       currentIndex: number
       progress: number
       speed: number
+      animationId: number | null
 
       constructor(element: HTMLCanvasElement, options: GranimOptions) {
         this.canvas = element
@@ -214,10 +223,11 @@ export default function TimeBasedGradient() {
         this.currentIndex = 0
         this.progress = 0
         this.speed = 0.003
+        this.animationId = null
         this.animate()
       }
 
-      animate() {
+      animate = () => {
         this.progress += this.speed
 
         if (this.progress >= 1) {
@@ -258,10 +268,13 @@ export default function TimeBasedGradient() {
         this.ctx.fillStyle = gradient
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
-        requestAnimationFrame(() => this.animate())
+        this.animationId = requestAnimationFrame(this.animate)
       }
 
       destroy() {
+        if (this.animationId) {
+          cancelAnimationFrame(this.animationId)
+        }
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
       }
     }
@@ -296,7 +309,12 @@ export default function TimeBasedGradient() {
         granimRef.current.destroy()
       }
     }
-  }, []) // Remove noiseSpeed dependency
+  }, [isMounted])
+
+  // Show nothing during SSR
+  if (!isMounted) {
+    return null
+  }
 
   return (
     <div className={styles.corebg}>

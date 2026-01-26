@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 export default async function MusingPage({ 
   params 
 }: { 
-  params: Promise 
+  params: Promise<{ slug: string }> 
 }) {
   const { slug } = await params;
   const musing = await reader.collections.musings.read(slug);
@@ -38,45 +38,55 @@ export default async function MusingPage({
   const renderable = Markdoc.transform(node);
 
   return (
-    
+    <article>
       {musing.featuredImage && (
-        
-          
-        
+        <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+          <Image
+            src={musing.featuredImage}
+            alt={musing.title}
+            fill
+            style={{ objectFit: 'cover' }}
+          />
+        </div>
       )}
 
-      {musing.title}
+      <h1>{musing.title}</h1>
       
       {musing.publishedDate && (
-        
+        <time>
           {new Date(musing.publishedDate).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
           })}
-        
+        </time>
       )}
 
       {musing.audioUrl && (
-        
-          Listen to this musing:
-          
-        
+        <div>
+          <p>Listen to this musing:</p>
+          <ReactPlayer 
+            url={musing.audioUrl || ''} 
+            controls 
+            width="100%"
+            height="60px"
+          />
+        </div>
       )}
 
-      
+      <div>
         {Markdoc.renderers.react(renderable, React)}
-      
+      </div>
 
       {musing.tags && musing.tags.length > 0 && (
-        
+        <div>
           {musing.tags.map((tag) => (
-            
+            <span key={tag}>
               {tag}
-            
+            </span>
           ))}
-        
+        </div>
       )}
-    
+    </article>
   );
 }
