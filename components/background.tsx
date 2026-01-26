@@ -64,9 +64,9 @@ export default function TimeBasedGradient() {
     afternoon: {
       name: 'Afternoon',
       gradients: [
-        ['#FFD700', '#dd6300'],
-        ['#FFEB3B', '#be044b'],
-        ['#FFF59D', '#b114a4'],
+        ['#FFD700', '#21e9e9'],
+        ['#FFEB3B', '#04be67'],
+        ['#FFF59D', '#24d1d1'],
       ],
     },
     evening: {
