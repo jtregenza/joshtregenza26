@@ -31,6 +31,8 @@ export default async function RootLayout({
 }>) {
    const settings = await reader.singletons.settings.read();
     const cmsMessages = settings?.tickerMessages || [];
+    console.log('Settings:', settings);
+  console.log('CMS Messages:', cmsMessages);
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>

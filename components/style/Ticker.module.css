@@ -5,7 +5,7 @@
   overflow: hidden;
   /* background: #000;
   color: #fff; */
-  color: black;
+  color: white;
   padding: 8px 0;
   position: relative;
 }
@@ -27,7 +27,7 @@
 .tickerItem::after {
   content: '•';
   margin-left: 2rem;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 @keyframes scroll {

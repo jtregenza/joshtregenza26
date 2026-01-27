@@ -7,6 +7,7 @@ interface TickerProps {
 }
 
 export default function Ticker({ cmsMessages = [] }: TickerProps) {
+    console.log('Ticker received messages:', cmsMessages);
   const [tickerMessages, setTickerMessages] = useState<string[]>([]);
 
   useEffect(() => {
@@ -31,16 +32,19 @@ export default function Ticker({ cmsMessages = [] }: TickerProps) {
       const weather = await fetchWeather();
       if (weather) dynamicMessages.push(weather);
 
-      // Optionally fetch a quote
-      const quote = await fetchQuote();
-      if (quote) dynamicMessages.push(quote);
 
-      // Combine dynamic messages with CMS messages
-      const allMessages = [...dynamicMessages, ...cmsMessages];
-      setTickerMessages(allMessages);
+        console.log('Dynamic messages:', dynamicMessages);
+        console.log('CMS messages:', cmsMessages);
+        
+        const allMessages = [...dynamicMessages, ...cmsMessages];
+        // Shuffle/randomize the array
+        const shuffled = allMessages.sort(() => Math.random() - 0.5);
+        
+        setTickerMessages(shuffled);
     };
 
     updateMessages();
+
     const interval = setInterval(updateMessages, 60000); // Update every minute
     return () => clearInterval(interval);
   }, [cmsMessages]);
@@ -89,19 +93,3 @@ function getWeatherEmoji(code: number): string {
   return '⛈️';
 }
 
-// Fetch random quote
-async function fetchQuote(): Promise<string | null> {
-  try {
-    const response = await fetch('https://api.quotable.io/random?maxLength=100', {
-      cache: 'no-store' // Try this instead of next.revalidate
-    });
-    
-    if (!response.ok) throw new Error('Quote fetch failed');
-    
-    const data = await response.json();
-    return `💭 "${data.content}" - ${data.author}`;
-  } catch (error) {
-    console.log('Quote unavailable'); // Less noisy error
-    return null;
-  }
-}
