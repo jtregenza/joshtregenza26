@@ -5,6 +5,9 @@ export default config({
   kind: process.env.NODE_ENV === 'development' ? 'local' : 'github',
   repo: 'jtregenza/joshtregenza26',
 },
+ui: {
+    brand: { name: 'Josh Tregenza'},
+},
 singletons: {
     settings: singleton({
       label: 'Site Settings',
@@ -25,6 +28,7 @@ singletons: {
       label: 'Projects',
       slugField: 'title',
       path: 'content/projects/*',
+       entryLayout: 'content',
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
@@ -76,6 +80,7 @@ singletons: {
       label: 'Musings',
       slugField: 'title',
       path: 'content/musings/*',
+       entryLayout: 'content',
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
@@ -168,6 +173,7 @@ singletons: {
       label: 'Lab',
       slugField: 'title',
       path: 'content/lab/*',
+       entryLayout: 'content',
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
@@ -226,6 +232,7 @@ singletons: {
       label: 'Process',
       slugField: 'title',
       path: 'content/process/*',
+       entryLayout: 'content',
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),

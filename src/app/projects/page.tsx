@@ -16,15 +16,17 @@ export default async function ProjectsPage() {
 
   return (
     <div>
-      <h1>Projects</h1>
-      <div>
+      <h1>All Projects</h1>
+      <p>Explore my portfolio of work</p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem', marginTop: '2rem' }}>
         {sortedProjects.map((project) => (
           <Link 
             key={project.slug}
             href={`/projects/${project.slug}`}
+            style={{ textDecoration: 'none', color: 'inherit' }}
           >
             {project.entry.featuredImage && (
-              <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', marginBottom: '1rem', borderRadius: '8px', overflow: 'hidden' }}>
                 <Image
                   src={project.entry.featuredImage}
                   alt={project.entry.title}
@@ -33,8 +35,8 @@ export default async function ProjectsPage() {
                 />
               </div>
             )}
-            <h2>{project.entry.title}</h2>
-            <p>{project.entry.description}</p>
+            <h2 style={{ marginBottom: '0.5rem' }}>{project.entry.title}</h2>
+            <p style={{ color: '#666' }}>{project.entry.description}</p>
           </Link>
         ))}
       </div>

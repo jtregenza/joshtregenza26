@@ -1,0 +1,325 @@
+.main {
+  display: flex;
+  /* flex-direction: column; */
+  place-items: center center;
+  gap: 2rem;
+  grid-column-start: 2;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+}
+
+.page {
+display: grid;
+  grid-template-columns: 18rem 1fr;
+  align-items: center;
+  justify-items: center;
+  min-height: 100svh;
+  padding: 2rem;
+  gap: 4rem;
+  font-family: var(--font-primary);
+  position: relative;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 18rem;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.aside h1 {
+  font-family: var(--font-secondary);
+  font-size: var(--type-h6);
+}
+
+.aside h2 span {
+  font-weight: 700;
+  font-size: 1.5rem;
+  font-family: var(--font-secondary);
+  text-transform: initial;
+  line-height: 1.6;
+}
+
+.aside h2 {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  line-height: 1;
+
+}
+
+.aboutTop {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.aboutTop > div{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.outerArea {
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    /* background: url('/svg/tv-outerarea.svg');
+    background-size: contain; */
+    position: relative;
+
+    display: flex;
+    place-items: center center;
+}
+
+.outerArea > svg {
+    mix-blend-mode: multiply;
+}
+
+.innerArea {
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  /* backdrop-filter: blur(8px); */
+  place-items: center center;
+}
+
+.svgBackOut, .svgBackIn {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.videoPlayerWrapper {
+  width: 100%;
+  aspect-ratio: 16/9;
+  mask-image: url('/svg/tv-visualarea.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  padding: 0rem;
+  position: relative;
+  
+}
+
+
+.videoPlayerWrapper .video{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  z-index: 7;
+  mix-blend-mode: color;
+  filter: contrast(1.3) brightness(0.95) saturate(1.05) blur(1px) hue-rotate(25deg);
+  background: rgb(177, 177, 177);
+  /* mix-blend-mode: lighten; */
+  /* filter: blur(1px); */
+  /* border-radius: 2rem; */
+  transition: filter 0.4s ease-in-out;
+}
+.videoPlayerWrapper .video:hover{
+  filter: contrast(1.3) brightness(0.95) saturate(1.05) blur(0px) hue-rotate(30deg);
+}
+
+.controls {
+  /* position: absolute; */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: #CAC7BF;
+  border: 1px solid rgba(69, 68, 68, 0.4);
+  /* backdrop-filter: blur(16px); */
+  color: #454444;
+  border-radius: 0.5rem;
+  z-index: 10;
+  /* opacity: 0; */
+  font-family: var(--font-kode-mono);
+  transition: opacity 0.4s ease-in-out;
+  margin: 0 2rem;
+  margin-top: 2rem;
+  box-shadow: inset 0 1px 4px rgba(69, 68, 68, 0.4) ,inset 0 -1px 2px rgba(69, 68, 68, 0.4)
+}
+
+
+.playButton,
+.volumeButton {
+  background: transparent;
+  border: none;
+  color: #454444;
+  font-size: 1rem;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  transition: transform 0.2s;
+}
+.volumeButton svg {
+  width: 100%;
+  height: 100%;
+  /* padding: 0.25rem; */
+}
+
+.playButton:hover,
+.volumeButton:hover {
+  transform: scale(1.05);
+}
+
+.time {
+  color: #454444;
+  font-size: 0.75rem;
+  /* font-family: monospace; */
+  min-width: 2rem;
+  text-align: center;
+}
+
+.seekBar {
+  flex: 1;
+  height: 0.25rem;
+  background: rgba(69, 68, 68, 0.4);
+  border-radius: 100rem;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.seekBar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: #454444;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.seekBar::-moz-range-thumb {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: #454444;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.volumeBar {
+  width: 80px;
+  height: 4px;
+  background: rgba(69, 68, 68, 0.4);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.volumeBar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #454444;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volumeBar::-moz-range-thumb {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: #454444;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+
+.videoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Video Menu */
+
+.videoMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(51, 51, 51, 0.2);
+  backdrop-filter: blur(16px);
+  /* min-width: min-content; */
+  width: 20ch;
+  padding: 0.5rem;
+  margin-top: 2rem;
+}
+
+.menuButton {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  color: var(--color-mono-secondary);
+  font-family: var(--font-primary);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 0.5rem;
+}
+
+.indicator {
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0.25rem;
+  /* border-radius: 0.05rem; */
+  flex-shrink: 0;
+}
+
+.videoTitle {
+  transition: color 0.6s ease, transform 0.4s ease;
+}
+
+.indicator svg, .hoverIndicator svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+.hoverIndicator {
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0.25rem;
+  /* background: rgba(255, 255, 255, 0.4); */
+  flex-shrink: 0;
+  margin-left: 0.25rem;
+  opacity: 0.6;
+}
+
+.videoMenu {
+    position: relative;
+}

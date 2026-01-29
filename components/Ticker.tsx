@@ -7,7 +7,6 @@ interface TickerProps {
 }
 
 export default function Ticker({ cmsMessages = [] }: TickerProps) {
-    console.log('Ticker received messages:', cmsMessages);
   const [tickerMessages, setTickerMessages] = useState<string[]>([]);
 
   useEffect(() => {
@@ -31,10 +30,6 @@ export default function Ticker({ cmsMessages = [] }: TickerProps) {
       // Fetch weather
       const weather = await fetchWeather();
       if (weather) dynamicMessages.push(weather);
-
-
-        console.log('Dynamic messages:', dynamicMessages);
-        console.log('CMS messages:', cmsMessages);
         
         const allMessages = [...dynamicMessages, ...cmsMessages];
         // Shuffle/randomize the array

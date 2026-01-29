@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Markdoc from '@markdoc/markdoc';
 import React from 'react';
 import dynamic from 'next/dynamic';
+import { MediaPlayer } from '../../../../components/VideoPlayer';
+import styles from '../voice.module.css'
 
 // const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
 
@@ -35,12 +37,21 @@ export default async function VoiceDetailPage({
     throw new Error('Invalid content');
   }
   
-  const renderable = Markdoc.transform(node);
+    // Prioritize video over audio, use whichever exists
+  const mediaUrl = item.videoUrl || item.audioUrl;
 
   return (
     <article>
-      {item.featuredImage && (
-        <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+    <div className={styles.mediaWrapper}>
+      {mediaUrl ? (
+        <div>
+          <MediaPlayer 
+            mediaUrl={mediaUrl} 
+            mediaPoster={item.featuredImage || undefined}
+          />
+        </div>
+      ) : item.featuredImage ? (
+        <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', marginBottom: '2rem', borderRadius: '8px', overflow: 'hidden' }}>
           <Image
             src={item.featuredImage}
             alt={item.title}
@@ -48,52 +59,8 @@ export default async function VoiceDetailPage({
             style={{ objectFit: 'cover' }}
           />
         </div>
-      )}
-
-      <h1>{item.title}</h1>
-      
-      {item.role && <p><strong>Role:</strong> {item.role}</p>}
-      {item.client && <p><strong>Client:</strong> {item.client}</p>}
-      
-      <p>{item.description}</p>
-
-      {item.audioUrl && (
-        <div>
-          <h3>Demo Reel / Audio</h3>
-          {/* <ReactPlayer 
-            url={item.audioUrl || ''} 
-            controls 
-            width="100%"
-            height="80px"
-          /> */}
-        </div>
-      )}
-
-      {item.videoUrl && (
-        <div>
-          <h3>Video</h3>
-          {/* <ReactPlayer 
-            url={item.videoUrl || ''} 
-            controls 
-            width="100%"
-            height="500px"
-          /> */}
-        </div>
-      )}
-
-      <div>
-        {Markdoc.renderers.react(renderable, React)}
+      ) : null}
       </div>
-
-      {item.tags && item.tags.length > 0 && (
-        <div>
-          {item.tags.map((tag) => (
-            <span key={tag}>
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
     </article>
   );
 }

@@ -1,14 +1,27 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-family-primary: 'Geist Mono', monospace;
+  --font-family-secondary: 'Geist', sans-serif ;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #fafafa;
   }
 }
+
+
+  ::-webkit-scrollbar{
+	  scrollbar-width:thin;
+    background: var(--background);
+    padding: 0.5rem 0.25rem;
+  }
+  ::-webkit-scrollbar-thumb{
+    background:var(--foreground);
+  }
+
 
 html,
 body {
@@ -19,11 +32,11 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-family-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 2rem;
-  padding-top: 4rem;
+  /* padding-top: 4rem; */
   
 }
 

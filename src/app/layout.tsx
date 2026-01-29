@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Kode_Mono } from "next/font/google";
 import "./globals.css";
 import TimeBasedGradient from "../../components/background";
 import Nav from "../../components/nav";
@@ -13,6 +13,11 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const kodeMono = Kode_Mono({
+  variable: "--font-kode-mono",
   subsets: ["latin"],
 });
 
@@ -31,11 +36,9 @@ export default async function RootLayout({
 }>) {
    const settings = await reader.singletons.settings.read();
     const cmsMessages = settings?.tickerMessages || [];
-    console.log('Settings:', settings);
-  console.log('CMS Messages:', cmsMessages);
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${kodeMono.variable}`}>
       <Nav cmsMessages={cmsMessages}/>
         {children}
       <TimeBasedGradient/>
