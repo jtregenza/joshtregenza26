@@ -8,6 +8,7 @@
   color: white;
   padding: 8px 0;
   position: relative;
+  mask: linear-gradient(45deg, transparent, black 5%, black 95%, transparent);
 }
 
 .ticker {

@@ -4,9 +4,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Markdoc from '@markdoc/markdoc';
 import React from 'react';
-import dynamic from 'next/dynamic';
-
-// const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
+import { MediaPlayer } from '../../../../components/VideoPlayer';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -37,10 +35,20 @@ export default async function ProcessDetailPage({
   
   const renderable = Markdoc.transform(node);
 
+  // Prioritize video over audio
+  const mediaUrl = item.videoUrl || item.audioUrl;
+
   return (
-    <article>
-      {item.featuredImage && (
-        <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+    <article style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem' }}>
+      {mediaUrl ? (
+        <div style={{ marginBottom: '2rem' }}>
+          <MediaPlayer 
+            mediaUrl={mediaUrl} 
+            mediaPoster={item.featuredImage || undefined}
+          />
+        </div>
+      ) : item.featuredImage ? (
+        <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', marginBottom: '2rem', borderRadius: '8px', overflow: 'hidden' }}>
           <Image
             src={item.featuredImage}
             alt={item.title}
@@ -48,42 +56,36 @@ export default async function ProcessDetailPage({
             style={{ objectFit: 'cover' }}
           />
         </div>
-      )}
+      ) : null}
 
-      <h1>{item.title}</h1>
-      <p><strong>Category:</strong> {item.category}</p>
-      <p>{item.description}</p>
+      <div style={{ marginBottom: '2rem' }}>
+        <span style={{ 
+          display: 'inline-block',
+          padding: '0.5rem 1rem', 
+          background: '#0070f3', 
+          color: 'white', 
+          borderRadius: '20px', 
+          fontSize: '0.875rem',
+          fontWeight: '600',
+          marginBottom: '1rem'
+        }}>
+          {item.category}
+        </span>
+        <h1 style={{ margin: '0.5rem 0 1rem' }}>{item.title}</h1>
+        <p style={{ fontSize: '1.25rem', color: '#666' }}>{item.description}</p>
+      </div>
 
-      {item.videoUrl && (
-        <div>
-          {/* <ReactPlayer 
-            url={item.videoUrl || ''} 
-            controls 
-            width="100%"
-            height="500px"
-          /> */}
-        </div>
-      )}
-
-      {item.audioUrl && (
-        <div>
-          {/* <ReactPlayer 
-            url={item.audioUrl || ''} 
-            controls 
-            width="100%"
-            height="80px"
-          /> */}
-        </div>
-      )}
-
-      <div>
+      <div style={{ lineHeight: '1.8', marginBottom: '2rem' }}>
         {Markdoc.renderers.react(renderable, React)}
       </div>
 
       {item.tags && item.tags.length > 0 && (
-        <div>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
           {item.tags.map((tag) => (
-            <span key={tag}>
+            <span 
+              key={tag}
+              style={{ padding: '0.5rem 1rem', background: '#f0f0f0', borderRadius: '20px', fontSize: '0.875rem' }}
+            >
               {tag}
             </span>
           ))}

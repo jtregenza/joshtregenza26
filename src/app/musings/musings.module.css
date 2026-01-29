@@ -1,0 +1,9 @@
+.musingsContainer {
+    display: flex;
+    gap: 2rem;
+}
+
+.musingsContainer .sidebar nav {
+    display: flex;
+    flex-direction: column;
+}

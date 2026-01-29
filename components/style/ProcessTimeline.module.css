@@ -1,0 +1,207 @@
+/* Main page - large centered timeline */
+.timelineContainerMain {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  margin-bottom: 4rem;
+}
+
+/* Compact version for child pages */
+.timelineContainerCompact {
+  padding: 2rem 2rem 1rem;
+  background: #f8f8f8;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.timeline {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.timelineContainerMain .timeline {
+  height: 400px;
+}
+
+.timelineContainerCompact .timeline {
+  height: 80px;
+}
+
+/* The connecting line */
+.timelineLine {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, #ddd, #0070f3, #ddd);
+  transform: translateY(-50%);
+}
+
+.timelineContainerCompact .timelineLine {
+  height: 2px;
+}
+
+/* Timeline nodes */
+.timelineNode {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.timelineNode:hover .nodeCircle {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(0, 112, 243, 0.3);
+}
+
+/* The circle/dot */
+.nodeCircle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.timelineContainerCompact .nodeCircle {
+  width: 40px;
+  height: 40px;
+  border-width: 2px;
+}
+
+.nodeNumber {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #666;
+}
+
+.timelineContainerCompact .nodeNumber {
+  font-size: 0.875rem;
+}
+
+/* Active state */
+.timelineNodeActive .nodeCircle {
+  background: #0070f3;
+  border-color: #0070f3;
+  box-shadow: 0 0 0 4px rgba(0, 112, 243, 0.2);
+}
+
+.timelineNodeActive .nodeNumber {
+  color: white;
+}
+
+/* Labels on main page */
+.nodeLabel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 1.5rem;
+  text-align: center;
+  min-width: 150px;
+  max-width: 200px;
+}
+
+.nodeLabel h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.nodeCategory {
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Tooltip on compact view */
+.nodeTooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #333;
+  color: white;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.nodeTooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #333;
+}
+
+.timelineNode:hover .nodeTooltip {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timelineContainerMain {
+    min-height: 50vh;
+    padding: 2rem 1rem;
+  }
+
+  .timelineContainerMain .timeline {
+    height: 300px;
+  }
+
+  .nodeCircle {
+    width: 50px;
+    height: 50px;
+  }
+
+  .timelineContainerCompact .nodeCircle {
+    width: 30px;
+    height: 30px;
+  }
+
+  .nodeNumber {
+    font-size: 1rem;
+  }
+
+  .timelineContainerCompact .nodeNumber {
+    font-size: 0.75rem;
+  }
+
+  .nodeLabel {
+    min-width: 120px;
+    max-width: 150px;
+  }
+
+  .nodeLabel h3 {
+    font-size: 0.875rem;
+  }
+
+  .nodeCategory {
+    font-size: 0.625rem;
+  }
+}

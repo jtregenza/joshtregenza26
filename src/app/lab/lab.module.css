@@ -1,0 +1,9 @@
+.labContainer {
+    display: flex;
+    gap: 2rem;
+}
+
+.labContainer .sidebar nav {
+    display: flex;
+    flex-direction: column;
+}

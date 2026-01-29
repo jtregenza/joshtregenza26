@@ -1,8 +1,6 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react'
 import styles from './style/videoplayer.module.css'
-import TVOutArea from './svgs/tv-outer'
-import TVInArea from './svgs/tv-inner'
 import VolcumeIcon from './svgs/volume-icon'
 import MuteIcon from './svgs/mute-icon'
 import { VHSEffect } from './VHSEffect'
@@ -392,9 +390,9 @@ export const MediaPlayer: React.FC<MediaPlayerProps> = ({ mediaUrl, mediaPoster 
   return (
     <>
     <div className={styles.outerArea}>
-      <TVOutArea />
+      {/* <TVOutArea /> */}
       <div className={styles.innerArea}>
-        <TVInArea />
+        {/* <TVInArea /> */}
         <div className={styles.videoPlayerWrapper}>
           {renderMedia()}
           <VHSEffect />
