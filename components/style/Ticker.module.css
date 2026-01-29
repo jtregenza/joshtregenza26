@@ -11,6 +11,11 @@
   mask: linear-gradient(45deg, transparent, black 5%, black 95%, transparent);
 }
 
+.tickerWrap::selection {
+    filter: invert(1);
+    background: rgba(0,0,0,0.4);
+}
+
 .ticker {
   display: flex;
   animation: scroll 30s linear infinite;
