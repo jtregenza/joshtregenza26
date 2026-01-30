@@ -2,6 +2,7 @@ import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../../keystatic.config';
 import Link from 'next/link';
 import Image from 'next/image';
+import styles from './projects.module.css'
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -15,18 +16,19 @@ export default async function ProjectsPage() {
   });
 
   return (
-    <div>
+    <div style={{width: '100%'}}>
       <h1>All Projects</h1>
       <p>Explore my portfolio of work</p>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem', marginTop: '2rem' }}>
+      <div className={styles.cardContainer}>
         {sortedProjects.map((project) => (
           <Link 
             key={project.slug}
             href={`/projects/${project.slug}`}
+            className={styles.projectCard}
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
             {project.entry.featuredImage && (
-              <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', marginBottom: '1rem', borderRadius: '8px', overflow: 'hidden' }}>
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '8px', overflow: 'hidden' }}>
                 <Image
                   src={project.entry.featuredImage}
                   alt={project.entry.title}
@@ -35,8 +37,10 @@ export default async function ProjectsPage() {
                 />
               </div>
             )}
-            <h2 style={{ marginBottom: '0.5rem' }}>{project.entry.title}</h2>
-            <p style={{ color: '#666' }}>{project.entry.description}</p>
+            <div className={styles.cardContent}>
+                <h2 style={{ marginBottom: '0.5rem' }}>{project.entry.title}</h2>
+                <button>↰</button>
+            </div>
           </Link>
         ))}
       </div>

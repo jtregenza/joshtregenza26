@@ -16,6 +16,17 @@
     background: rgba(0,0,0,0.4);
 }
 
+.weatherItem {
+    display: inline-flex;
+    gap: 0.5rem;
+}
+
+.weatherIcon {
+    display: flex;
+    place-items: center center;
+    width: auto;
+}
+
 .ticker {
   display: flex;
   animation: scroll 30s linear infinite;

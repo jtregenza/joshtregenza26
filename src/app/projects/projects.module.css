@@ -40,6 +40,7 @@
     display: flex; 
     align-items: flex-end;
     gap: 2rem;
+    width: 100%;
 } 
 
 .coreContent {
@@ -155,4 +156,33 @@ audio::-webkit-media-controls-play-button, video::-webkit-media-controls-play-bu
 .tags span {
     font-weight: 600;
     text-decoration: unset;
+}
+
+
+.cardContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
+.cardContent button {
+    translate: rotate(90deg);
+}
+
+.projectCard {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+
+.cardContent {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    opacity: 0;
+}
+
+.projectCard:hover .cardContent{
+    opacity: 1;
 }
