@@ -7,6 +7,13 @@ export default config({
 },
 ui: {
     brand: { name: 'Josh Tregenza'},
+        navigation: {
+        'Writing': ['musings'],
+        'Work': ['projects', 'process'],
+        'Voice': ['voice'],
+        'Fun': ['lab'],
+        'Settings': ['settings'],
+        },
 },
 singletons: {
     settings: singleton({
@@ -265,12 +272,12 @@ singletons: {
         category: fields.select({
           label: 'Category',
           options: [
-            { label: 'Workflow', value: 'workflow' },
-            { label: 'Tutorial', value: 'tutorial' },
-            { label: 'Behind the Scenes', value: 'behind-the-scenes' },
-            { label: 'Case Study', value: 'case-study' },
+            { label: 'Design/Development', value: 'design' },
+            { label: 'Management', value: 'management' },
+            { label: 'Coaching', value: 'coaching' },
+            { label: 'Voice Acting', value: 'voice-acting' },
           ],
-          defaultValue: 'workflow',
+          defaultValue: 'design',
         }),
         content: fields.markdoc({
           label: 'Content',

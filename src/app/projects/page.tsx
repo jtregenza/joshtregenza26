@@ -3,6 +3,7 @@ import keystaticConfig from '../../../keystatic.config';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './projects.module.css'
+import SymbolIcon from '../../../components/svgs/symbol';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -39,7 +40,7 @@ export default async function ProjectsPage() {
             )}
             <div className={styles.cardContent}>
                 <h2 style={{ marginBottom: '0.5rem' }}>{project.entry.title}</h2>
-                <button>↰</button>
+                <div className={styles.cardIcon}><SymbolIcon/></div>
             </div>
           </Link>
         ))}
