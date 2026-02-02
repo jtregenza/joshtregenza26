@@ -9,6 +9,9 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    position: sticky;
+    top: 2rem;
+    left: 0;
 }
 
 .projectNav {
@@ -42,6 +45,8 @@
     gap: 2rem;
     width: 100%;
 } 
+
+
 
 .coreContent {
     padding: 4rem 3rem;
@@ -161,8 +166,9 @@ audio::-webkit-media-controls-play-button, video::-webkit-media-controls-play-bu
 
 .cardContainer {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     width: 100%;
+    gap: 1rem;
 }
 
 .cardContent button {
@@ -172,15 +178,44 @@ audio::-webkit-media-controls-play-button, video::-webkit-media-controls-play-bu
 .projectCard {
     position: relative;
     width: 100%;
-    aspect-ratio: 16/9;
+    /* aspect-ratio: 1/1; */
+    background: rgba(255,255,255,1);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    color: rgba(0,0,0,0.4);
+        overflow: hidden;
 }
 
+.cardIcon {
+    width: 2rem;
+    height: 2rem;
+}
+
+.projectCard .cardImage{
+    aspect-ratio: 1/1.2;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
 
 .cardContent {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    opacity: 0;
+    /* position: absolute; */
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    /* border-radius: 0.5rem; */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* opacity: 0; */
+    transition: opacity 0.4s ease-in-out;
+}
+
+.cardContent h2 {
+    font-weight: 500;
 }
 
 .projectCard:hover .cardContent{

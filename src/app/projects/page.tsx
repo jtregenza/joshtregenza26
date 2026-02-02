@@ -18,8 +18,6 @@ export default async function ProjectsPage() {
 
   return (
     <div style={{width: '100%'}}>
-      <h1>All Projects</h1>
-      <p>Explore my portfolio of work</p>
       <div className={styles.cardContainer}>
         {sortedProjects.map((project) => (
           <Link 
@@ -29,7 +27,7 @@ export default async function ProjectsPage() {
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
             {project.entry.featuredImage && (
-              <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '8px', overflow: 'hidden' }}>
+              <div className={styles.cardImage} style={{ position: 'relative', width: '100%', height: '100%' }}>
                 <Image
                   src={project.entry.featuredImage}
                   alt={project.entry.title}
@@ -39,7 +37,7 @@ export default async function ProjectsPage() {
               </div>
             )}
             <div className={styles.cardContent}>
-                <h2 style={{ marginBottom: '0.5rem' }}>{project.entry.title}</h2>
+                <h2>{project.entry.title}</h2>
                 <div className={styles.cardIcon}><SymbolIcon/></div>
             </div>
           </Link>
