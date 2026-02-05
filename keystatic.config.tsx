@@ -12,12 +12,12 @@ ui: {
         'Work': ['projects', 'process'],
         'Voice': ['voice'],
         'Fun': ['lab'],
-        'Settings': ['settings'],
+        'Settings': ['settings', 'labWelcome'],
         },
 },
 singletons: {
     settings: singleton({
-      label: 'Site Settings',
+      label: 'Nav Ticker Messages',
       path: 'content/settings',
       schema: {
         tickerMessages: fields.array(
@@ -29,13 +29,32 @@ singletons: {
         ),
       },
     }),
+    labWelcome: singleton({
+      label: 'Lab Welcome Messages',
+      path: 'content/lab-welcome',
+      schema: {
+        supervisorLabel: fields.text({
+          label: 'Supervisor Label',
+          defaultValue: 'Supervisors:',
+        }),
+        messages: fields.array(
+          fields.text({
+            label: 'Message',
+          }),
+          {
+            label: 'Cycling Messages',
+            itemLabel: (props) => props.value,
+          }
+        ),
+      },
+    }),
   },
     collections: {
     projects: collection({
       label: 'Projects',
       slugField: 'title',
       path: 'content/projects/*',
-       entryLayout: 'content',
+      entryLayout: 'content',
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
@@ -86,8 +105,9 @@ singletons: {
     musings: collection({
       label: 'Musings',
       slugField: 'title',
+      columns: ['title', 'date',], 
       path: 'content/musings/*',
-       entryLayout: 'content',
+      entryLayout: 'content',
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
@@ -101,7 +121,7 @@ singletons: {
           publicPath: '/images/musings/',
           validation: { isRequired: false },
         }),
-        publishedDate: fields.date({ label: 'Published Date' }),
+        date: fields.date({ label: 'Published Date' }),
         tags: fields.array(
           fields.text({ label: 'Tag' }),
           {
@@ -127,6 +147,7 @@ singletons: {
     voice: collection({
       label: 'Voice',
       slugField: 'title',
+      columns: ['title',], 
       path: 'content/voice/*',
       format: { contentField: 'content' },
       schema: {
@@ -180,6 +201,7 @@ singletons: {
       label: 'Lab',
       slugField: 'title',
       path: 'content/lab/*',
+      columns: ['title', 'status'],
        entryLayout: 'content',
       format: { contentField: 'content' },
       schema: {
@@ -239,6 +261,7 @@ singletons: {
       label: 'Process',
       slugField: 'title',
       path: 'content/process/*',
+      columns: ['title', 'category'],
        entryLayout: 'content',
       format: { contentField: 'content' },
       schema: {

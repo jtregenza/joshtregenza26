@@ -52,9 +52,9 @@ export default async function MusingPage({
 
       <h1>{musing.title}</h1>
       
-      {musing.publishedDate && (
+      {musing.date && (
         <time>
-          {new Date(musing.publishedDate).toLocaleDateString('en-US', {
+          {new Date(musing.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'

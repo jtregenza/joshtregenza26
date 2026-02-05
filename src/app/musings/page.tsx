@@ -9,8 +9,8 @@ export default async function MusingsPage() {
   const musings = await reader.collections.musings.all();
   
   const sortedMusings = musings.sort((a, b) => {
-    const dateA = a.entry.publishedDate ? new Date(a.entry.publishedDate).getTime() : 0;
-    const dateB = b.entry.publishedDate ? new Date(b.entry.publishedDate).getTime() : 0;
+    const dateA = a.entry.date ? new Date(a.entry.date).getTime() : 0;
+    const dateB = b.entry.date ? new Date(b.entry.date).getTime() : 0;
     return dateB - dateA;
   });
 
@@ -37,9 +37,9 @@ export default async function MusingsPage() {
               <div>
                 <h2>{musing.entry.title}</h2>
                 <p>{musing.entry.excerpt}</p>
-                {musing.entry.publishedDate && (
+                {musing.entry.date && (
                   <time>
-                    {new Date(musing.entry.publishedDate).toLocaleDateString('en-US', {
+                    {new Date(musing.entry.date).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'

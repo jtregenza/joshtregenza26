@@ -3,7 +3,139 @@
     gap: 2rem;
 }
 
+.labContainer .sidebar {
+    min-width: 200px;
+}
+
 .labContainer .sidebar nav {
     display: flex;
     flex-direction: column;
+}
+
+.sidebar .navLink {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s;
+}
+
+.sidebar .navLink:hover {
+    opacity: 0.7;
+}
+
+.navIcon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+/* Lab landing page styles */
+.labLanding {
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.diagonalContainer {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Left diagonal section (dark) */
+.leftDiagonal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d4a4a 100%);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* Right diagonal section (teal/green gradient) */
+.rightDiagonal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(225deg, #a8d5ba 0%, #5a9b8a 50%, #3d6b5f 100%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* White center V */
+.centerV {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    clip-path: polygon(50% 0, 60% 50%, 50% 100%, 40% 50%);
+    z-index: 1;
+}
+
+.iconsContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.experimentIcon {
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.experimentIcon:hover {
+    transform: scale(1.15);
+    opacity: 0.9;
+}
+
+.experimentIcon svg,
+.experimentIcon img {
+    width: 48px;
+    height: 48px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+
+
+/* Tooltip for experiment names */
+.experimentIcon::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 50%;
+    left: 70px;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 10;
+}
+
+.experimentIcon:hover::after {
+    opacity: 1;
 }
