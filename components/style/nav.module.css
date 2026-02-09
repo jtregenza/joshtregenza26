@@ -10,7 +10,8 @@
     display: flex;
     padding-left: 0rem;
     overflow: hidden;
-    font-family: var(--font-geist-mono);
+    font-family: var(--font-geist-pixel-square);
+    letter-spacing: 0.2ch;
     font-size: 1rem;
     background: rgba(0,0,0,0.2);
     backdrop-filter: blur(8px);
