@@ -40,7 +40,7 @@
     align-items: center;
     justify-content: center;
     padding: 0;
-    position: relative;
+    /* position: relative; */
     overflow: hidden;
 }
 
@@ -54,38 +54,32 @@
 }
 
 /* Left diagonal section (dark) */
-.leftDiagonal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d4a4a 100%);
-    clip-path: polygon(0 0, 100% 0, 0 100%);
-}
+
 
 /* Right diagonal section (teal/green gradient) */
-.rightDiagonal {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(225deg, #a8d5ba 0%, #5a9b8a 50%, #3d6b5f 100%);
-    clip-path: polygon(100% 0, 100% 100%, 0 100%);
-}
+
 
 /* White center V */
-.centerV {
+
+
+
+.pyramidContainer {
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
     width: 100%;
-    height: 100%;
-    background: white;
-    clip-path: polygon(50% 0, 60% 50%, 50% 100%, 40% 50%);
-    z-index: 1;
+    display: flex;
 }
+
+.pyramidContainer svg {
+    /* width: 100%; */
+    height: 80svh;
+    /* margin-top: -4rem; */
+    /* transform: translateY(-4rem); */
+}
+
+
 
 .iconsContainer {
     position: absolute;

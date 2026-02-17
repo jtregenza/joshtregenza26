@@ -3,6 +3,7 @@ import keystaticConfig from '../../../keystatic.config';
 import Link from 'next/link';
 import styles from './lab.module.css';
 import WelcomeText from '../../../components/welcome/WelcomeText.server';
+import InvertedPyramid from '../../../components/svgs/invertedPyramid';
 
 
 
@@ -93,6 +94,8 @@ const ExperimentIcon = ({ type, index }: { type: string; index: number }) => {
   }
 };
 
+
+
 export default async function LabPage() {
   const lab = await reader.collections.lab.all();
   
@@ -109,22 +112,19 @@ export default async function LabPage() {
 
   return (
     <div className={styles.labLanding}>
+      <div className={styles.pyramidWrapper}></div>
+        <div className={styles.pyramidContainer}>
+          <InvertedPyramid/>
+        </div>
       <div className={styles.diagonalContainer}>
-        {/* Left dark diagonal section */}
-        <div className={styles.leftDiagonal}></div>
-        
-        {/* Right teal/green diagonal section */}
-        <div className={styles.rightDiagonal}></div>
-        
-        {/* White center V */}
-        <div className={styles.centerV}></div>
+
         
         {/* Icons positioned along the diagonals */}
         <div className={styles.iconsContainer}>
           {/* Left diagonal icons */}
           {leftExperiments.map((item, index) => {
             // Position icons along left diagonal (top-left to center-bottom)
-            const percentage = (index / (leftExperiments.length - 1 || 1)) * 100;
+            const percentage = (index / (leftExperiments.length - 1 || 1)) * 60;
             const top = `${percentage}%`;
             const left = `${percentage / 2}%`;
             
@@ -144,7 +144,7 @@ export default async function LabPage() {
           {/* Right diagonal icons */}
           {rightExperiments.map((item, index) => {
             // Position icons along right diagonal (top-right to center-bottom)
-            const percentage = (index / (rightExperiments.length - 1 || 1)) * 100;
+            const percentage = (index / (rightExperiments.length - 1 || 1)) * 60;
             const top = `${percentage}%`;
             const right = `${percentage / 2}%`;
             

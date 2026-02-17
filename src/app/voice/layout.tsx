@@ -27,9 +27,9 @@ export default async function VoiceLayout({
         <p>These demos show what I do. Commercial work that doesn't insult your audience's intelligence. Characters that feel lived-in, not performed at. Narration that people might actually want to listen to. I've put in the work, learned the craft, and I show up ready to deliver.</p>
         <p>Listen to the reels. If it's what you're looking for, let's talk.</p>
         <nav className={styles.voiceNav}>
-          <Link href="/voice" className={styles.navLink}>
+          {/* <Link href="/voice" className={styles.navLink}>
             <PlayIcon/> All Voice Work
-          </Link>
+          </Link> */}
           {sortedvoice.map((project) => (
             <Link
               key={project.slug}

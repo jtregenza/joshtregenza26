@@ -7,6 +7,7 @@ import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../keystatic.config';
 // import { GeistPixelSquare } from "geist/font/pixel";
 import { GeistPixelSquare, GeistPixelGrid, GeistPixelCircle, GeistPixelLine } from 'geist/font/pixel';
+import PageTransition from "../../components/TvTransition";
 
 
 const geistSans = Geist({
@@ -46,7 +47,9 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${kodeMono.variable} ${GeistPixelSquare.variable} ${GeistPixelLine.variable} ${GeistPixelCircle.variable} ${GeistPixelGrid.variable}`}>
       <Nav cmsMessages={cmsMessages}/>
-        {children}
+        <PageTransition>
+          {children}
+        </PageTransition>
       <TimeBasedGradient/>
       </body>
       

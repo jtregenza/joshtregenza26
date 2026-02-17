@@ -109,7 +109,7 @@ export default function TimeBasedGradient() {
     const noise = noiseRef.current
     if (!noise || !noise.style.backgroundImage) return
 
-    noise.style.animation = `grained 0.4s steps(${noiseSpeed}, end) infinite`
+    noise.style.animation = `grained 0.2s steps(${noiseSpeed}, end) infinite`
   }, [noiseSpeed, isMounted])
 
   // Main initialization effect
@@ -177,10 +177,10 @@ export default function TimeBasedGradient() {
       const options = {
         patternWidth: 100,
         patternHeight: 100,
-        grainOpacity: 0.1,
-        grainDensity: 1,
-        grainWidth: 1,
-        grainHeight: 1,
+        grainOpacity: 0.15,
+        grainDensity: 2,
+        grainWidth: 1.5,
+        grainHeight: 1.5,
       }
 
       const canvas = document.createElement('canvas')

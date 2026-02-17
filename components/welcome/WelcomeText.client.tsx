@@ -40,7 +40,7 @@ export default function WelcomeTextClient({
   return (
     <div className={styles.welcomeText}>
       <span className={styles.staticText}>
-        {supervisorLabel}
+        {supervisorLabel}:
       </span>{' '}
       <span
         className={`${styles.cyclingText} ${

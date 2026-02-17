@@ -1,14 +1,18 @@
 .welcomeText {
-    /* position: absolute; */
-    /* bottom: 4rem; */
-    /* left: 50%; */
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
     transform: translateX(-50%);
     /* color: #d4af37; */
-    font-family: monospace;
+    font-family: var(--font-kode-mono);
+    font-weight: 600;
+    text-transform: uppercase;
     font-size: 0.85rem;
     letter-spacing: 0.05em;
     z-index: 3;
     white-space: nowrap;
+    width: 100%;
+    text-align: center;
 }
 
 .staticText {
@@ -19,11 +23,14 @@
     position: relative;
     display: inline-block;
     color: #fff;
+    /* min-width: 64ch; */
+    text-align: left;
+    font-weight: 300;
 }
 
 /* Glitch effect */
 .glitch {
-    animation: glitch-anim 0.3s linear;
+    animation: glitch-anim 0.2s linear;
 }
 
 @keyframes glitch-anim {
@@ -66,13 +73,13 @@
 .glitch::before {
     animation: glitch-anim-2 0.3s linear;
     clip-path: inset(0 0 0 0);
-    text-shadow: -2px 0 #ff00de;
+    text-shadow: -2px 0 #ff0000;
 }
 
 .glitch::after {
     animation: glitch-anim-3 0.3s linear;
     clip-path: inset(0 0 0 0);
-    text-shadow: 2px 0 #00fff9;
+    text-shadow: 2px 0 #4c00ff;
 }
 
 @keyframes glitch-anim-2 {

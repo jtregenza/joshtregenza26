@@ -1,0 +1,180 @@
+/* components/PageTransition.module.css */
+
+.tvOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity:1 ;
+  transition: opacity 0.1s ease-in;
+}
+
+.tvOverlayActive {
+  opacity: 1;
+  animation: channelChange 0.8s ease-in-out;
+}
+
+/* TV Static Effect */
+.tvStatic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+  animation: static 0.1s infinite;
+  opacity: 0;
+}
+
+.tvOverlayActive .tvStatic {
+  opacity: 1;
+}
+
+@keyframes static {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 10%); }
+  80% { transform: translate(-15%, 0); }
+  90% { transform: translate(10%, 5%); }
+  100% { transform: translate(5%, 0); }
+}
+
+/* Scanlines */
+.tvScanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.1) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.tvOverlayActive .tvScanlines {
+  opacity: 0.3;
+}
+
+/* Vignette */
+.tvVignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  opacity: 0;
+}
+
+.tvOverlayActive .tvVignette {
+  opacity: 1;
+}
+
+/* Channel Change Animation */
+@keyframes channelChange {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0;
+    transform: scaleY(0.01) scaleX(1);
+  }
+  20% {
+    opacity: 1;
+    transform: scaleY(0.01) scaleX(1);
+  }
+  30% {
+    opacity: 0.8;
+    transform: scaleY(0.02) scaleX(1);
+  }
+  40% {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1);
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Page Content */
+.pageContent {
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.pageContentTransition {
+  opacity: 0;
+}
+
+/* TV Screen Collapse Effect */
+@keyframes tvCollapse {
+  0% {
+    transform: scaleY(1) scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleY(0.01) scaleX(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scaleY(0) scaleX(0);
+    opacity: 0;
+  }
+}
+
+/* Optional: Add RGB shift for more authenticity */
+.tvOverlayActive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, 
+      rgba(255, 0, 0, 0.1) 0%, 
+      transparent 50%, 
+      rgba(0, 0, 255, 0.1) 100%
+    );
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: rgbShift 0.6s ease-in-out;
+}
+
+@keyframes rgbShift {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}

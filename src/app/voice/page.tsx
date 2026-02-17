@@ -16,7 +16,7 @@ export default async function VoicePage() {
 
   return (
     <div>
-      <h1>Voice Work</h1>
+      {/* <h1>Voice Work</h1>
       <div>
         {sortedVoice.map((item) => (
           <Link 
@@ -39,7 +39,7 @@ export default async function VoicePage() {
             <p>{item.entry.description}</p>
           </Link>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
