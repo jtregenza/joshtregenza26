@@ -115,14 +115,15 @@
 .experimentIcon::after {
     content: attr(data-title);
     position: absolute;
-    top: 50%;
-    left: 70px;
-    transform: translateY(-50%);
+    top: 100%;
+    left: 0;
+    /* right: 0; */
+    transform: translateX(-25%);
     background: rgba(0, 0, 0, 0.85);
     color: white;
     padding: 6px 10px;
-    border-radius: 4px;
-    font-size: 13px;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;

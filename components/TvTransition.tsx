@@ -8,8 +8,16 @@ export default function PageTransition({ children }: { children: React.ReactNode
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [displayChildren, setDisplayChildren] = useState(children);
 
+const skipTransition = ['/voice/', '/musings/', '/process/', '/portfolio/', '/lab/'].some(route => 
+  pathname.startsWith(route)
+);
+
   useEffect(() => {
     // Start transition
+      if (skipTransition) {
+    setDisplayChildren(children);
+    return;
+  }
     setIsTransitioning(true);
 
     // After transition effect completes, update content
@@ -19,7 +27,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
     }, 800); // Adjust timing to match CSS animation
 
     return () => clearTimeout(timer);
-  }, [pathname, children]);
+  }, [pathname, children, skipTransition]);
 
   return (
     <>
