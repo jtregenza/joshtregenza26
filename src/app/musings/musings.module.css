@@ -1,9 +1,387 @@
-.musingsContainer {
-    display: flex;
-    gap: 2rem;
+/* app/musings/musings.module.css */
+
+.twitterContainer {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 100vh;
+  border-left: 1px solid #eff3f4;
+  border-right: 1px solid #eff3f4;
 }
 
-.musingsContainer .sidebar nav {
-    display: flex;
+/* Left Panel - Feed */
+.feedPanel {
+  width: 600px;
+  border-right: 1px solid #eff3f4;
+  overflow-y: auto;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.feedHeader {
+  padding: 1rem 1rem;
+  border-bottom: 1px solid #eff3f4;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+
+.feedHeader h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.tweetFeed {
+  display: flex;
+  flex-direction: column;
+}
+
+.tweetCard {
+  padding: 1rem;
+  border-bottom: 1px solid #eff3f4;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.tweetCard:hover {
+  background-color: #f7f9f9;
+}
+
+.tweetHeader {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.tweetMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  font-size: 0.9375rem;
+}
+
+.username {
+  font-weight: 700;
+  color: #0f1419;
+}
+
+.handle {
+  color: #536471;
+}
+
+.dot {
+  color: #536471;
+}
+
+.date {
+  color: #536471;
+}
+
+.tweetContent {
+  margin-left: 48px;
+}
+
+.tweetContent h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #0f1419;
+}
+
+.tweetContent p {
+  margin: 0;
+  color: #0f1419;
+  line-height: 1.5;
+  font-size: 0.9375rem;
+}
+
+.tweetTags {
+  margin-left: 48px;
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  color: #1d9bf0;
+  font-size: 0.875rem;
+}
+
+/* Right Panel - Detail */
+.detailPanel {
+  flex: 1;
+  overflow-y: auto;
+  background: white;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .twitterContainer {
     flex-direction: column;
+  }
+
+  .feedPanel {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid #eff3f4;
+  }
+
+  .detailPanel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .tweetCard {
+    padding: 0.75rem;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 0.75rem;
+  }
+
+  .tweetContent {
+    margin-left: 44px;
+  }
+
+  .tweetContent h3 {
+    font-size: 1rem;
+  }
+
+  .tweetTags {
+    margin-left: 44px;
+  }
+}
+
+/* app/musings/musings.module.css */
+
+.twitterContainer {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 100vh;
+  border-left: 1px solid #eff3f4;
+  border-right: 1px solid #eff3f4;
+}
+
+/* Left Panel - Feed */
+.feedPanel {
+  width: 600px;
+  border-right: 1px solid #eff3f4;
+  overflow-y: auto;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.feedHeader {
+  padding: 1rem 1rem;
+  border-bottom: 1px solid #eff3f4;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+
+.feedHeader h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.tweetFeed {
+  display: flex;
+  flex-direction: column;
+}
+
+.tweetCard {
+  padding: 1rem;
+  border-bottom: 1px solid #eff3f4;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.tweetCard:hover {
+  background-color: #f7f9f9;
+}
+
+.tweetHeader {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.tweetMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  font-size: 0.9375rem;
+}
+
+.username {
+  font-weight: 700;
+  color: #0f1419;
+}
+
+.handle {
+  color: #536471;
+}
+
+.dot {
+  color: #536471;
+}
+
+.date {
+  color: #536471;
+}
+
+.tweetContent {
+  margin-left: 48px;
+}
+
+.tweetContent h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #0f1419;
+}
+
+.tweetContent p {
+  margin: 0;
+  color: #0f1419;
+  line-height: 1.5;
+  font-size: 0.9375rem;
+}
+
+.tweetTags {
+  margin-left: 48px;
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  color: #1d9bf0;
+  font-size: 0.875rem;
+}
+
+/* Right Panel - Detail */
+.detailPanel {
+  flex: 1;
+  overflow-y: auto;
+  background: white;
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 2rem;
+}
+
+.emptyStateContent {
+  text-align: center;
+  color: #536471;
+}
+
+.emptyStateContent h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #0f1419;
+}
+
+.emptyStateContent p {
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .twitterContainer {
+    flex-direction: column;
+  }
+
+  .feedPanel {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid #eff3f4;
+  }
+
+  .detailPanel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .tweetCard {
+    padding: 0.75rem;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 0.75rem;
+  }
+
+  .tweetContent {
+    margin-left: 44px;
+  }
+
+  .tweetContent h3 {
+    font-size: 1rem;
+  }
+
+  .tweetTags {
+    margin-left: 44px;
+  }
 }
