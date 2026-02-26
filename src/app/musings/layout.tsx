@@ -44,8 +44,10 @@ export default async function MusingsLayout({
                     <span>JT</span>
                   </div>
                   <div className={styles.tweetMeta}>
-                    <span className={styles.username}>Josh Tregenza</span>
-                    <span className={styles.handle}>@joshtregenza</span>
+                    <div className={styles.Metaname}>
+                      <span className={styles.username}>Josh Tregenza</span>
+                      <span className={styles.handle}>@joshtregenza</span>
+                    </div>
                     {date && (
                       <>
                         <span className={styles.dot}>·</span>

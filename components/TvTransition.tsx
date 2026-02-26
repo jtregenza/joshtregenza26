@@ -8,7 +8,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [displayChildren, setDisplayChildren] = useState(children);
 
-const skipTransition = ['/voice/', '/musings/', '/process/', '/portfolio/', '/lab/'].some(route => 
+const skipTransition = ['/voice/', '/musings/', '/process/', '/projects/', '/lab/'].some(route => 
   pathname.startsWith(route)
 );
 
