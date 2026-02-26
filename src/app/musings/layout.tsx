@@ -3,6 +3,7 @@ import keystaticConfig from '../../../keystatic.config';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import styles from './musings.module.css';
+import MusingsIcon from '../../../components/svgs/musingsIcon';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -19,11 +20,14 @@ export default async function MusingsLayout({
     return dateB - dateA;
   });
 
+  
+
   return (
     <div className={styles.twitterContainer}>
       {/* Left Panel - Twitter Feed Style */}
       <aside className={styles.feedPanel}>
         <div className={styles.feedHeader}>
+          <MusingsIcon/>
           <h2>Musings</h2>
         </div>
         
@@ -41,7 +45,7 @@ export default async function MusingsLayout({
               >
                 <div className={styles.tweetHeader}>
                   <div className={styles.avatar}>
-                    <span>JT</span>
+                    <MusingsIcon/>
                   </div>
                   <div className={styles.tweetMeta}>
                     <div className={styles.Metaname}>

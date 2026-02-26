@@ -6,6 +6,7 @@ import Markdoc from '@markdoc/markdoc';
 import React from 'react';
 // import { MediaPlayer } from 'components/MediaPlayer';
 import styles from '../musings.module.css';
+import MusingsIcon from '../../../../components/svgs/musingsIcon';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -43,7 +44,7 @@ export default async function MusingPage({
       {/* Tweet Header */}
       <div className={styles.tweetDetailHeader}>
         <div className={styles.avatar}>
-          <span>JT</span>
+          <MusingsIcon/>
         </div>
         <div className={styles.tweetDetailMeta}>
           <div className={styles.username}>Josh Tregenza</div>
