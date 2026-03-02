@@ -6,60 +6,14 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
         <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          {/* <h1>To get started, edit the page.tsx file.</h1> */}
+          <h2>designer. storyteller. craftsman.</h2>
+          <p>As a designer, I start where most people don't: with the story underneath the brief. The visual problem is rarely the real problem. I go deeper until I find the thing that's actually broken, then build back up from there.</p>
+          <p>As a storyteller, I believe the most durable brands aren't built on campaigns or aesthetics. They're built on narrative that runs through every decision, every touchpoint, every hire. Story isn't the output. It's the operating system.</p>
+          <p>As a craftsman, I care about the work at the level where most people stop caring. The documentation nobody reads until they need it. The design system that holds together six months after handoff. The CSS architecture that still makes sense when someone new inherits it. That's where the real work lives.</p>
+          <p>I've spent over ten years at the intersection of design, development, and product. I build teams that bridge those disciplines and actually talk to each other. I dig into technical debt, legacy systems, and tangled business processes because that's where the real constraints are, and constraints are where good design gets interesting. I write the guides. I run the workshops. I mentor the people who'll do this better than me.</p>
+          <p>And I do all of it with the belief that the best work comes from cultures that are caring, a little quirky, and honest about what they're actually trying to build.</p>
         </div>
                 
       </main>

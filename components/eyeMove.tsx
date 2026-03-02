@@ -40,10 +40,10 @@ export default function EyeMove({ size = "2.5rem" }: EyeMoveProps) {
         const rect = container.getBoundingClientRect();
         const ballPx = toPixels(size);
 
-        const clampedX = Math.min(Math.max(posRef.current.x, ballPx / 2), rect.width - ballPx / 2);
-        const clampedY = Math.min(Math.max(posRef.current.y, ballPx / 2), rect.height - ballPx / 2);
+        const clampedX = Math.min(Math.max(posRef.current.x, ballPx / 2.25), rect.width - ballPx / 2.25);
+        const clampedY = Math.min(Math.max(posRef.current.y, ballPx / 2.25), rect.height - ballPx / 2.25);
 
-        ball.style.transform = `translate(${clampedX - ballPx / 2}px, ${clampedY - ballPx / 2}px)`;
+        ball.style.transform = `translate(${clampedX - ballPx / 2.25}px, ${clampedY - ballPx / 2.25}px)`;
       }
       rafRef.current = requestAnimationFrame(tick);
     };

@@ -59,6 +59,11 @@ a {
 }
 
 
+::selection {
+  background: rgba(250,0,0,0.8);
+  color: black;
+}
+
 .css-b83g4v {
   height: 88svh !important;
   background: rgba(0,0,0,0.2);
