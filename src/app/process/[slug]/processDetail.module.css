@@ -1,0 +1,304 @@
+
+/* ─────────────────────────────────────────────────────────────
+   processDetail.module.css
+   Slug / detail page for a single process phase
+   ───────────────────────────────────────────────────────────── */
+
+.page {
+  --ink:      #0e0d0b;
+  --paper:    #f2ede6;
+  --smoke:    #b5afa6;
+  --ember:    #c94a1f;
+  --brass:    #b8922a;
+  --slate:    #2d3540;
+  --offwhite: #faf8f4;
+  --deep:     #13110e;
+
+  font-family: var(--font-family-primary);
+  /* background: var(--ink); */
+  /* color: var(--paper); */
+  min-height: 100svh;
+  overflow-x: hidden;
+  margin-top: -3rem;
+}
+
+
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+
+  background: inherit;
+  backdrop-filter: blur(12px);
+}
+
+.back {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back:hover { color: var(--paper); }
+
+.breadcrumbPhase {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--smoke);
+}
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  padding: 6rem 3rem 4rem;
+  overflow: hidden;
+  /* border-bottom: 1px solid rgba(255,255,255,0.07); */
+  min-height: 100svh;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+}
+
+.watermark {
+  position: absolute;
+  right: 1rem;
+  bottom: 0rem;
+  font-family: var(--font-geist-pixel-square);
+  font-size: clamp(12rem, 25vw, 22rem);
+  line-height: 0.8;
+  color: rgba(255,255,255,0.03);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.02em;
+}
+
+.accent--light .watermark,
+.accent--ember .watermark { color: rgba(14,13,11,0.04); }
+
+.phaseLabel {
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  /* color: var(--ember); */
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.phaseLabel::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: white;
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: var(--font-geist-pixel-square);
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 500;
+  /* mix-blend-mode: exclusion; */
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+}
+
+.pullQuote {
+  font-family: var(--font-geist-pixel-square);
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-style: italic;
+  /* color: var(--brass); */
+  line-height: 1.55;
+  border-left: 2px solid white;
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+  max-width: 60ch;
+}
+
+.description {
+  font-size: 0.85rem;
+  line-height: 1.9;
+  color: var(--smoke);
+  max-width: 60ch;
+  margin-top: 1rem;
+}
+
+.categoryBadge {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--smoke);
+}
+
+/* ── Media ── */
+.mediaWrap {
+  padding: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+/* ── Methods ── */
+.methodsSection {
+  padding: 3rem;
+  /* border-bottom: 1px solid rgba(255,255,255,0.07); */
+}
+
+.methodsHeading {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  /* color: var(--ember); */
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.methodsHeading::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: white;
+}
+
+.methods {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.method {
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--smoke);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.method:hover {
+  border-color: var(--ember);
+  color: var(--ember);
+}
+
+/* ── Markdoc body ── */
+.body {
+  padding: 4rem 3rem;
+  max-width: 900px;
+  /* margin: 0 auto; */
+  font-size: 0.85rem;
+  line-height: 1.9;
+  color: var(--smoke);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.body h1, .body h2, .body h3 {
+  font-family: var(--font-family-secondary);
+  color: var(--paper);
+  margin: 2rem 0 0.75rem;
+  line-height: 1.15;
+}
+
+.body h2 { font-size: 1.6rem; }
+.body h3 { font-size: 1.2rem; }
+
+.body p  { margin-bottom: 1.25rem; }
+
+.body strong { color: var(--paper); font-weight: 500; }
+.body em     { color: var(--paper); font-style: italic; }
+
+.body a {
+  color: var(--smoke);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.body ul, .body ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.body li { margin-bottom: 0.4rem; }
+
+.body blockquote {
+  border-left: 2px solid var(--brass);
+  padding-left: 1.25rem;
+  color: var(--brass);
+  font-style: italic;
+  font-family: var(--font-family-secondary);
+  font-size: 1.05rem;
+  margin: 2rem 0;
+}
+
+/* ── Tags ── */
+.tagsRow {
+  padding: 2rem 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.tag {
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--smoke);
+}
+
+/* ── Phase nav ── */
+.phaseNav {
+  padding: 3rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.phaseNavLink {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.phaseNavLink:hover { color: var(--paper); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .breadcrumb { padding: 1rem 1.5rem; }
+  .hero       { padding: 5rem 1.5rem 3rem; }
+  .mediaWrap,
+  .methodsSection,
+  .tagsRow,
+  .phaseNav   { padding: 2rem 1.5rem; }
+  .body       { padding: 3rem 1.5rem; }
+  .watermark  { font-size: 40vw; }
+}

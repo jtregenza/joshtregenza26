@@ -2,3 +2,109 @@
 title: Codebots
 tags: []
 ---
+
+# Codebots: Into the Diagram Editor
+
+## The World You're Stepping Into
+
+Codebots is an AI-powered app building tool built for people who never learned to code. People who have ideas and vision and ambition, but who've been told, implicitly and repeatedly, that software development isn't for them. That's a worthy problem to solve. The kind that will eat you alive if you're not careful.
+
+When I arrived, the brand was still finding itself. My early work was exploratory: abstract, futuristic concepting, diving into 3D modelling to find a visual language that would resonate. We chased some genuinely beautiful directions. We also learned something important. *Beautiful* and *welcoming* are not the same thing. The robotic abstraction we loved? It alienated people. It said "this is for someone else." So we killed it. Good designers kill their darlings. It hurts. Do it anyway.
+
+---
+
+## The Assignment
+
+My main role crystallized around the Diagram Editor, a critical piece of infrastructure that would let users actually *build* things on the platform. We split it into two distinct beasts: the **Schematic** and the **Interface Builder** (which we were calling UX Flow at the time, because naming things is genuinely one of the hardest parts of this craft).
+
+I started with the Interface Builder. Not because it was easier. It wasn't. I started there because it had the most unknowns, and you always want to face the dragon while you still have energy.
+
+The goal was deceptively clean:
+
+> *Build something that lets a person create a readable flow of an application. Something that connects meaning to structure, design to data.*
+
+Simple to say. Genuinely hard to do.
+
+---
+
+## Research: Going Into the Cave
+
+Here's the thing about research that nobody tells you when you're starting out: the documents lie. Or rather, they're incomplete. The real knowledge lives in the people who've been doing the work, in the muscle memory of developers who've been navigating tools like Eclipse for years, in the friction they don't even notice anymore because they've adapted to it.
+
+We had constraints. User research had to stay internal, within WorkingMouse, until Codebots hit Beta. No outside testing. That means you get creative. You call on your developers. You watch them work. You ask them to narrate their process like they're explaining it to someone who's never touched a keyboard.
+
+I went deep into Eclipse. I read raw code. I sifted through graphic and modelling frameworks, cross-referencing an academic thesis that had more abstraction than instruction. I drew out potential flows on whiteboards until my arm hurt.
+
+Then the useful stuff started surfacing.
+
+Duplication. Copy-paste. Moving attributes between entities. These sound like table-stakes features, obvious and boring. But watching multiple developers work in parallel revealed something: these "small" things were the difference between a tool that respected your time and one that quietly wasted it. That gap matters. That gap is where frustration lives, and where people quit.
+
+Our personas, Captains, Creators, and Builders, gave us a useful map. The Diagram Editor was primarily Creators and Builders territory. Managers had other parts of the platform. Here, we were speaking directly to the people with their hands in the clay.
+
+---
+
+## Building the First Ugly Version
+
+The first prototype was built in three.js. It was rough. It was supposed to be rough. The point wasn't polish. The point was to stress-test our requirements against reality.
+
+We built it as two canvases: a palette canvas and a diagram canvas. Shapes get dragged from one to the other. They connect. A bot developer defines what those shapes *mean*. A designer defines what they *look like*. The abstraction of the system meant the Diagram Editor could serve different bots differently, a genuinely elegant structural decision that we only understood by building the ugly version first.
+
+The shapes themselves were SVGs. Despite running on three.js, we kept the camera locked in 2D and layered shapes on the Z axis. Building those shapes meant plotting path coordinates by hand, which is exactly as tedious as it sounds.
+
+I hit a wall. Fast.
+
+If we were going to make this scalable, if designers other than me were ever going to contribute shapes, we needed a better pipeline. So I built a simple SVG converter. Nothing heroic. A focused tool for a specific problem. We used Foundation's Kitchen Sink as our shape foundation (Lampbot's UI was loosely based on it), converted the elements and components, and later used the learnings from that converter to let Lampbot handle the step automatically.
+
+Build the tool. Then make the tool obsolete. That's the arc.
+
+---
+
+## Running Scenarios: Where the Real Work Happens
+
+Here's a move that sounds slow but saves you weeks: step back from the prototype and run scenarios on a whiteboard with paper cutouts.
+
+We did exactly that. We built a paper prototype of the Diagram Editor and walked through specific interactions methodically. What happens when you do *this*. What breaks when you try *that*. We documented the holes. We established rules. We found the things we hadn't thought of.
+
+One of the biggest discoveries: we had a Schematic and an Interface Builder, but the *connection* between them, the place where functionality met interface, wasn't represented in either model. It lived in the gap. That's where meaning was being lost.
+
+So we built a wormhole. Literally called it that. A bridge between the two models that gave the Interface Builder real relevance to how data would actually behave. Suddenly the system had stakes. Suddenly you could trace a decision from concept to consequence.
+
+We also established discrete **actions** that the Interface Builder would handle: interactions triggered by selections, buttons, user choices. This wasn't decoration. This was the thing that would let a solo non-developer build an entire application end-to-end. The whole promise of Codebots, crystallized into a set of intentional interactions.
+
+---
+
+## Making It Look Like Something
+
+There was design work done before I arrived. Good work, even. High-fidelity concepts built alongside the founder. But I couldn't have started there. I needed to understand the *system* before I could dress it properly. Aesthetic decisions made in ignorance of structure are just decoration, and decoration is what you reach for when you don't have anything to say.
+
+Once I understood the shapes we needed, I iterated from Extension Shapes to Foundation Shapes, eventually landing on an approach that leaned into Lampbot's existing objects as defined by the parent model. It was the right call. It made the system coherent. It made *future* design decisions easier because we were building on something real.
+
+The Design Lead and I pushed the visual direction toward a future UI aesthetic, forward-looking enough to carry Codebots' platform ambitions, grounded enough to actually function. We landed somewhere good. It wasn't the last word, but it was a solid next chapter.
+
+---
+
+## Shipping It Into the World
+
+We started showing people. Live demos at the Codebots launch. AI meetups. Myriad 2018. We put the thing in front of real humans and watched what happened.
+
+What always happens: you learn things you couldn't have learned any other way.
+
+The color blindness issue hit hard. The Diagram Editor used color-coded relationships, red, blue, green, inherited from Eclipse's design logic. Elegant in theory. Inaccessible in practice for a non-trivial portion of users. We'd *planned* solutions. We hadn't *implemented* them. That's a different thing, and the workshops at Myriad made the gap impossible to ignore.
+
+We also found the edges of the UI shape library. Building out former Access databases into models? The shapes held up. More complex, imaginative application designs? We needed more. The library was a foundation, not a finished house.
+
+---
+
+## What Was Left on the Table, and What Wasn't
+
+Codebots moved into Closed Beta with select companies participating in Field Trials. The hypothesis driving those trials: development is meaningfully more efficient when a team uses a Codebot, with Lampbot as the flagship.
+
+I left work in progress, as you always do. The color blindness fix. The expanded shape library. Problems we'd named and planned for but hadn't yet closed.
+
+What I didn't leave was debt. The scenarios we ran, the wormhole we built, the SVG pipeline we designed to be replaced: those were decisions made with intention. The system had logic. The logic could be extended.
+
+That's the job. Not to finish everything. To build something that *can* be finished by whoever comes next.
+
+---
+
+*Codebots Diagram Editor, Design & UX, 2017–2018*

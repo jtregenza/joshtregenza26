@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ReactNode } from 'react';
 import styles from './musings.module.css';
 import MusingsIcon from '../../../components/svgs/musingsIcon';
+import EyeMove from '../../../components/eyeMove';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -45,7 +46,7 @@ export default async function MusingsLayout({
               >
                 <div className={styles.tweetHeader}>
                   <div className={styles.avatar}>
-                    <MusingsIcon/>
+                    <EyeMove size="1rem"/>
                   </div>
                   <div className={styles.tweetMeta}>
                     <div className={styles.Metaname}>

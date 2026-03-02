@@ -2,3 +2,78 @@
 title: Working Mouse
 tags: []
 ---
+# WorkingMouse: Learning the Craft by Doing All of It
+
+## Where It Started
+
+WorkingMouse is an application services business. Hybrid apps, multiple devices, model-driven development, and a culture that ran on agile iteration. Their sister company, Codebots, built and maintained the code bots that powered the development workflow. The two companies shared a building and a philosophy: build smart, build fast, build right.
+
+I joined in November 2016 as a Designer. What that actually meant varied considerably day to day. Pull-up banners on Monday. API call builder design on Tuesday. Mentoring a junior designer on Wednesday. That kind of range either breaks you or makes you sharper. I got sharper.
+
+---
+
+## Client Work
+
+Most of my time went toward the larger internal platforms, Lampbot and Codebots. But I moved through client projects on an ad hoc basis, typically when deadlines started closing in or a client relationship needed steadying. I'd flex the visual and UI work in initial meetings, then hand off to development once scope was locked.
+
+A few projects worth naming:
+
+A safety inspection application that let inspectors perform routine checks on products and properties, generating risk ratings automatically. It went to development. A performance tracker for car enthusiasts, essentially Strava for track days, that also made it through to a full build. An asset management portal with a paired mobile app for physical compliance checks, still waiting on client funding. A video conferencing lead generation platform for professional communities that didn't make it past funding.
+
+The through-line across all of them: get in early, understand the problem before touching the interface, and make the handoff to development clean enough that nothing gets lost in translation.
+
+---
+
+## Lampbot: Inheriting a Legacy System
+
+About a year in, I moved across to Codebots officially and became the designer for the Lampbot team. Lampbot was the premier code bot, built on the LAMP stack using Backbone Marionette. It was also over five years old, under-documented, and carrying years of additions from developers who'd moved on without leaving much behind.
+
+The first job wasn't designing anything new. It was understanding what already existed.
+
+I audited and documented the existing pattern library across Lampbot's many moving parts. To make the research tangible and shareable, I set up the LampWall: a dedicated wall mapping out Lampbot's full pattern library, visible to the whole team. It sounds low-tech because it was. It was also exactly what the team needed to stop making decisions in the dark.
+
+That documentation work fed directly into the MetaModel shapes that would later become central to the Diagram Editor. You can't build the new thing clearly until you understand the old thing completely.
+
+---
+
+## LMUI: Redesigning the Admin Portal
+
+With the research grounded, I turned to the administration portal. It had gathered dust. Clients were using it, but not well, because the interface wasn't designed for the way they actually worked.
+
+The redesign project got the internal codename LMUI (Lightning Muffin User Interface, a name I stand behind). The approach was deliberately lo-fi: general color direction established, but screens and flows kept as wireframes rather than high-fidelity mockups. Development wasn't imminent, and polishing something before engineering was ready to build it is just waste dressed up as productivity.
+
+I also designed new Behaviours for Lampbot. The most interesting of these was an API call builder, built so that not just developers but any technically literate user could construct API calls without writing code. The approach used Google's Blockly, a scratch-style puzzle-piece language. I proved the concept worked in Blockly first, then went and interviewed developers to properly understand how they built and used API calls, cross-referencing against tools like Postman to identify where existing solutions created friction. The UX flows came after that research, not before.
+
+That sequence matters. Solution first as a proof of concept, research second to make it real.
+
+---
+
+## Sass: Building Infrastructure That Outlasted Me
+
+Outside the design work, one of the highest-leverage things I did at WorkingMouse was move the entire company off LESS and onto Sass as the CSS preprocessor of choice.
+
+When I joined, LESS was in use but not well. Sass gave us better tooling, cleaner architecture, and media queries that didn't require workarounds. I knew this from prior experience and made the case early. Then I built the migration plan, worked with developers to ensure old projects could be updated efficiently, and started training everyone else.
+
+The training is where it got interesting.
+
+The design team grew from four people when I joined to eleven at its peak. Every new designer needed to understand not just how to use Sass, but how WorkingMouse used it specifically. So I wrote the Style Implementation Guide: close to ten thousand words, broken into three parts.
+
+The first part covered Sass theory. What it is, how it works, why each feature exists. Written in plain language because the goal was understanding, not just compliance.
+
+The second part covered rules for working in the wild: naming conventions, syntax formatting, RGB over hex, how to structure your Sass logically by grouping extends first, then includes, then properties. It went into typographic theory and vertical rhythm, because good CSS is downstream of understanding how type actually works.
+
+The third part covered WorkingMouse's specific architecture: the Funnel Style Structure. Global styles flow down into components, which flow into views, which flow into tiles. Elements live inside components. Components live inside views. Everything has a place, and knowing the place means designers could work inside the system without breaking it.
+
+The guide wasn't just documentation. It was a training tool that made onboarding faster, a reference that meant I didn't have to answer the same questions repeatedly, and a handoff document that meant the system didn't depend on me being in the room. When I left, it stayed useful. That's the measure of whether documentation actually worked.
+
+---
+
+## What WorkingMouse Was Really About
+
+The through-line across two years at WorkingMouse wasn't any single project. It was learning how to make design decisions that held up under engineering reality, and how to build systems, whether that's a pattern library, a CSS architecture, or a training guide, that made the people around me more capable.
+
+I was self-starting by necessity. The problems that mattered weren't always the ones someone handed me. They were the ones I noticed, named, and then built something to address. AstroMouse, the Lampbot pattern library, the Sass migration, the Style Implementation Guide: none of those were assigned. All of them outlasted my time there.
+
+---
+
+*WorkingMouse / Codebots, Designer & Front-End Developer, 2016–2018*

@@ -2,95 +2,138 @@ import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../../../keystatic.config';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 import Markdoc from '@markdoc/markdoc';
 import React from 'react';
 import { MediaPlayer } from '../../../../components/VideoPlayer';
+import styles from './processDetail.module.css';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
 export async function generateStaticParams() {
-  const processItems = await reader.collections.process.all();
-  return processItems.map((item) => ({
-    slug: item.slug,
-  }));
+  const items = await reader.collections.process.all();
+  return items.map((item) => ({ slug: item.slug }));
 }
 
-export default async function ProcessDetailPage({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   const item = await reader.collections.process.read(slug);
-  
+  if (!item) return {};
+  return {
+    title: `${item.title} — Process`,
+    description: item.description ?? undefined,
+  };
+}
+
+export default async function ProcessDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const item = await reader.collections.process.read(slug);
+
   if (!item) notFound();
 
+  // Render markdoc content
   const { node } = await item.content();
   const errors = Markdoc.validate(node);
-  
   if (errors.length) {
     console.error(errors);
-    throw new Error('Invalid content');
+    throw new Error('Invalid markdoc content');
   }
-  
   const renderable = Markdoc.transform(node);
+  const hasContent = node.children.length > 0;
 
-  // Prioritize video over audio
-  const mediaUrl = item.videoUrl || item.audioUrl;
+  const mediaUrl  = item.videoUrl || item.audioUrl || null;
+  const num       = String(item.phaseNumber ?? '').padStart(2, '0');
+  const accent    = item.accentColor ?? 'dark';
 
   return (
-    <article style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem' }}>
+    <main className={[styles.page, styles[`accent--${accent}`]].join(' ')}>
+
+      {/* ── Hero ── */}
+      <header className={styles.hero}>
+        <span className={styles.watermark} aria-hidden="true">{num}</span>
+
+        <div className={styles.heroContent}>
+          <p className={styles.phaseLabel}>Phase {num}</p>
+          <h1 className={styles.title}>{item.title}</h1>
+
+          {item.tagline && (
+            <blockquote className={styles.pullQuote}>
+              {item.tagline}
+            </blockquote>
+          )}
+
+          {item.description && (
+            <p className={styles.description}>{item.description}</p>
+          )}
+
+          {item.category && (
+            <span className={styles.categoryBadge}>{item.category}</span>
+          )}
+        </div>
+      </header>
+
+      {/* ── Media ── */}
       {mediaUrl ? (
-        <div style={{ marginBottom: '2rem' }}>
-          <MediaPlayer 
-            mediaUrl={mediaUrl} 
-            mediaPoster={item.featuredImage || undefined}
+        <div className={styles.mediaWrap}>
+          <MediaPlayer
+            mediaUrl={mediaUrl}
+            mediaPoster={item.featuredImage ?? undefined}
           />
         </div>
       ) : item.featuredImage ? (
-        <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', marginBottom: '2rem', borderRadius: '8px', overflow: 'hidden' }}>
+        <div className={styles.imageWrap}>
           <Image
             src={item.featuredImage}
             alt={item.title}
             fill
             style={{ objectFit: 'cover' }}
+            priority
           />
         </div>
       ) : null}
 
-      <div style={{ marginBottom: '2rem' }}>
-        <span style={{ 
-          display: 'inline-block',
-          padding: '0.5rem 1rem', 
-          background: '#0070f3', 
-          color: 'white', 
-          borderRadius: '20px', 
-          fontSize: '0.875rem',
-          fontWeight: '600',
-          marginBottom: '1rem'
-        }}>
-          {item.category}
-        </span>
-        <h1 style={{ margin: '0.5rem 0 1rem' }}>{item.title}</h1>
-        <p style={{ fontSize: '1.25rem', color: '#666' }}>{item.description}</p>
-      </div>
+      {/* ── Methods pills ── */}
+      {item.methods && item.methods.length > 0 && (
+        <section className={styles.methodsSection}>
+          <p className={styles.methodsHeading}>Methods</p>
+          <ul className={styles.methods}>
+            {item.methods.map((method) => (
+              <li key={method} className={styles.method}>{method}</li>
+            ))}
+          </ul>
+        </section>
+      )}
 
-      <div style={{ lineHeight: '1.8', marginBottom: '2rem' }}>
-        {Markdoc.renderers.react(renderable, React)}
-      </div>
-
-      {item.tags && item.tags.length > 0 && (
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-          {item.tags.map((tag) => (
-            <span 
-              key={tag}
-              style={{ padding: '0.5rem 1rem', background: '#f0f0f0', borderRadius: '20px', fontSize: '0.875rem' }}
-            >
-              {tag}
-            </span>
-          ))}
+      {/* ── Markdoc body ── */}
+      {hasContent && (
+        <div className={styles.body}>
+          {Markdoc.renderers.react(renderable, React)}
         </div>
       )}
-    </article>
+
+      {/* ── Tags ── */}
+      {item.tags && item.tags.length > 0 && (
+        <footer className={styles.tagsRow}>
+          {item.tags.map((tag) => (
+            <span key={tag} className={styles.tag}>{tag}</span>
+          ))}
+        </footer>
+      )}
+
+      {/* ── Phase nav ── */}
+      <div className={styles.phaseNav}>
+        <Link href="/process" className={styles.phaseNavLink}>
+          ← Back to Process
+        </Link>
+      </div>
+    </main>
   );
 }

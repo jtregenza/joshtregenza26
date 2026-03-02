@@ -257,61 +257,125 @@ singletons: {
         }),
       },
     }),
-    process: collection({
-      label: 'Process',
-      slugField: 'title',
-      path: 'content/process/*',
-      columns: ['title', 'category'],
-       entryLayout: 'content',
-      format: { contentField: 'content' },
-      schema: {
-        title: fields.slug({ name: { label: 'Title' } }),
-        description: fields.text({
-          label: 'Description',
-          multiline: true,
-        }),
-        featuredImage: fields.image({
-          label: 'Featured Image',
+process: collection({
+  label: 'Process',
+  slugField: 'title',
+  path: 'content/process/*',
+  columns: ['title', 'phaseNumber', 'category'],
+  entryLayout: 'content',
+  format: { contentField: 'content' },
+  schema: {
+    title: fields.slug({ name: { label: 'Title' } }),
+
+    phaseNumber: fields.integer({
+      label: 'Phase Number',
+      description: 'Used for ordering (1–6). Controls the 0N label and sort order.',
+      validation: { isRequired: true, min: 1, max: 6 },
+    }),
+
+    phaseLabel: fields.text({
+      label: 'Phase Label',
+      description: 'Short label shown above the heading e.g. "Phase 01"',
+      defaultValue: 'Phase 01',
+    }),
+
+    tagline: fields.text({
+      label: 'Tagline / Pull Quote',
+      description: 'One punchy sentence shown as a pull quote on the phase page.',
+      multiline: false,
+      validation: { isRequired: false },
+    }),
+
+    description: fields.text({
+      label: 'Body Copy',
+      description: 'The main paragraph copy for this phase.',
+      multiline: true,
+    }),
+
+    methods: fields.array(
+      fields.text({ label: 'Method' }),
+      {
+        label: 'Methods / Techniques',
+        description: 'The pill tags shown at the bottom of the section.',
+        itemLabel: props => props.value,
+      }
+    ),
+
+    accentColor: fields.select({
+      label: 'Accent Colour',
+      description: 'Controls the section background / accent treatment.',
+      options: [
+        { label: 'Dark (ink)',        value: 'dark' },
+        { label: 'Midnight (slate)',  value: 'slate' },
+        { label: 'Ember (red)',       value: 'ember' },
+        { label: 'Light (off-white)', value: 'light' },
+        { label: 'Deep (near-black)', value: 'deep' },
+      ],
+      defaultValue: 'dark',
+    }),
+
+    layoutVariant: fields.select({
+      label: 'Layout Variant',
+      description: 'Controls the visual layout of the phase section.',
+      options: [
+        { label: 'Split – copy left, visual right',   value: 'split-left' },
+        { label: 'Split – visual left, copy right',   value: 'split-right' },
+        { label: 'Centred – full-width pull quote',   value: 'centred' },
+        { label: 'Grid – 2×2 card layout',            value: 'grid' },
+        { label: 'Stacked – full-width stacked',      value: 'stacked' },
+      ],
+      defaultValue: 'split-left',
+    }),
+
+    featuredImage: fields.image({
+      label: 'Featured Image',
+      directory: 'public/images/process',
+      publicPath: '/images/process/',
+      validation: { isRequired: false },
+    }),
+
+    date: fields.date({ label: 'Date' }),
+
+    tags: fields.array(
+      fields.text({ label: 'Tag' }),
+      {
+        label: 'Tags',
+        itemLabel: props => props.value,
+      }
+    ),
+
+    videoUrl: fields.url({
+      label: 'Video URL',
+      validation: { isRequired: false },
+    }),
+
+    audioUrl: fields.url({
+      label: 'Audio URL',
+      validation: { isRequired: false },
+    }),
+
+    category: fields.select({
+      label: 'Category',
+      options: [
+        { label: 'Design/Development', value: 'design' },
+        { label: 'Management',         value: 'management' },
+        { label: 'Coaching',           value: 'coaching' },
+        { label: 'Voice Acting',       value: 'voice-acting' },
+      ],
+      defaultValue: 'design',
+    }),
+
+    content: fields.markdoc({
+      label: 'Extended Content (optional)',
+      options: {
+        image: {
           directory: 'public/images/process',
           publicPath: '/images/process/',
-          validation: { isRequired: false },
-        }),
-        date: fields.date({ label: 'Date' }),
-        tags: fields.array(
-          fields.text({ label: 'Tag' }),
-          {
-            label: 'Tags (e.g., workflow, tutorial, behind-the-scenes)',
-            itemLabel: props => props.value,
-          }
-        ),
-        videoUrl: fields.url({
-          label: 'Video URL',
-          validation: { isRequired: false },
-        }),
-        audioUrl: fields.url({
-          label: 'Audio URL',
-          validation: { isRequired: false },
-        }),
-        category: fields.select({
-          label: 'Category',
-          options: [
-            { label: 'Design/Development', value: 'design' },
-            { label: 'Management', value: 'management' },
-            { label: 'Coaching', value: 'coaching' },
-            { label: 'Voice Acting', value: 'voice-acting' },
-          ],
-          defaultValue: 'design',
-        }),
-        content: fields.markdoc({
-          label: 'Content',
-          options: {
-            image: {
-              directory: 'public/images/process',
-              publicPath: '/images/process/',
-            },
-          },
-        }),
+        },
       },
     }),
+  },
+}),
+
   },
 });

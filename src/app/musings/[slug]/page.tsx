@@ -7,6 +7,7 @@ import React from 'react';
 // import { MediaPlayer } from 'components/MediaPlayer';
 import styles from '../musings.module.css';
 import MusingsIcon from '../../../../components/svgs/musingsIcon';
+import EyeMove from '../../../../components/eyeMove';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -44,7 +45,7 @@ export default async function MusingPage({
       {/* Tweet Header */}
       <div className={styles.tweetDetailHeader}>
         <div className={styles.avatar}>
-          <MusingsIcon/>
+          <EyeMove size="1rem"/>
         </div>
         <div className={styles.tweetDetailMeta}>
           <div className={styles.username}>Josh Tregenza</div>

@@ -42,7 +42,10 @@ export default function ProcessTimeline({ items }: ProcessTimelineProps) {
   return (
     <div className={isMainPage ? styles.timelineContainerMain : styles.timelineContainerCompact}>
       {/* Category Selector */}
-      {isMainPage && (
+
+        {isMainPage && (
+        <>
+        <h1>Select the Process Type</h1>
         <div className={styles.categorySelector}>
           {CATEGORIES.map(cat => (
             <button
@@ -54,19 +57,18 @@ export default function ProcessTimeline({ items }: ProcessTimelineProps) {
             </button>
           ))}
         </div>
+        </>
       )}
 
       {/* Compact category indicator on detail pages */}
       {!isMainPage && currentItem && (
-        <div className={styles.categoryIndicator}>
-          <span className={styles.categoryBadge}>
-            {CATEGORIES.find(c => c.value === currentItem.category)?.label || currentItem.category}
-          </span>
-        </div>
+        <Link 
+        className={styles.backProcess}
+        href="/process">← Back</Link>
       )}
 
+        
       <div className={styles.timeline}>
-        <div className={styles.timelineLine}></div>
         {filteredItems.map((item, index) => {
           const isActive = pathname.includes(item.slug);
           
@@ -75,28 +77,13 @@ export default function ProcessTimeline({ items }: ProcessTimelineProps) {
               key={item.slug}
               href={`/process/${item.slug}`}
               className={`${styles.timelineNode} ${isActive ? styles.timelineNodeActive : ''}`}
-              style={{
-                left: `${(index / Math.max(filteredItems.length - 1, 1)) * 100}%`,
-              }}
             >
-              <div className={styles.nodeCircle}>
-                <span className={styles.nodeNumber}>{index + 1}</span>
-              </div>
-              {isMainPage && (
-                <div className={styles.nodeLabel}>
-                  <h3>{item.title}</h3>
-                  <span className={styles.nodeCategory}>{item.category}</span>
-                </div>
-              )}
-              {!isMainPage && isActive && (
-                <div className={styles.nodeTooltip}>
-                  {item.title}
-                </div>
-              )}
+                <span className={styles.nodeNumber}>{index + 1}</span> <span className={styles.nodeLabel}>{item.title}</span>
             </Link>
           );
         })}
       </div>
+
     </div>
   );
 }
