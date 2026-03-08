@@ -2,7 +2,7 @@
     /* padding: 2rem; */
     display: flex;
     gap: 2rem;
-    font-family: var(--font-geist-pixel-square);
+    font-family: var(--font-geist-mono);
 }
 
 .sidebar {
@@ -13,11 +13,15 @@
     position: sticky;
     top: 2rem;
     left: 0;
+    font-family: var(--font-geist-pixel-square);
 }
 
 .sidebar h2 {
-    font-family: var(--font-geist-pixel-line);
-    font-weight: 300;
+    font-family: var(--font-geist-pixel-square);
+    font-weight: 400;
+    opacity: 0.8;
+    mix-blend-mode: exclusion;
+    /* color: red; */
     text-transform: uppercase;
     font-size: 2rem;
 }
@@ -74,13 +78,21 @@
 }
 
 .coreContent h1 {
-    font-family: var(--font-geist-pixel-line);
+    font-family: var(--font-geist-pixel-grid);
     text-transform: uppercase;
     margin-bottom: 1.5rem;
     line-height: 1.1;
-    letter-spacing: 0.03rem;
-    font-weight: 500;
+    letter-spacing: 0.25rem;
+    opacity: 0.8; 
+    font-weight: 800;
     font-size: 3rem;
+}
+
+.coreContent h2,
+.coreContent h3,
+.coreContent h4 {
+    margin: 1rem 0;
+    opacity: 0.8;
 }
 
 .coreContent p {

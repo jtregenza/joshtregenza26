@@ -5,8 +5,16 @@ import TimeBasedGradient from "../../components/background";
 export default function Home() {
   return (
     <div className={styles.page}>
+                <h1 className={styles.headline}>Josh Tregenza</h1>
       <main className={styles.main}>
+        <div className={styles.imageArea}>
+          <div className={styles.headImage}>
+            <Image alt="Josh Image" width="500" height="600" src="/images/dithr-josh-2.PNG"/>
+          </div>
+
+        </div>
         <div className={styles.intro}>
+          
           {/* <h1>To get started, edit the page.tsx file.</h1> */}
           <h2>designer. storyteller. craftsman.</h2>
           <p>As a designer, I start where most people don't: with the story underneath the brief. The visual problem is rarely the real problem. I go deeper until I find the thing that's actually broken, then build back up from there.</p>
