@@ -34,6 +34,19 @@ export default function Nav({ cmsMessages }: NavProps) {
   };
 
   return (
+    <>
+            <nav className={`${styles.mobileMenu} ${isMenuOpen ? styles.mobileMenuOpen : ''}`}>
+          {navItems.map(item => (
+            <Link 
+              key={item.href} 
+              href={item.href}
+              className={pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href)) ? styles.active : ''}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
     <header className={styles.header}>
       {/* Desktop Navigation */}
       <nav className={styles.desktopNav}>
@@ -61,21 +74,11 @@ export default function Nav({ cmsMessages }: NavProps) {
           </span>
         </button>
 
-        <nav className={`${styles.mobileMenu} ${isMenuOpen ? styles.mobileMenuOpen : ''}`}>
-          {navItems.map(item => (
-            <Link 
-              key={item.href} 
-              href={item.href}
-              className={pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href)) ? styles.active : ''}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+
       </div>
 
       <Ticker cmsMessages={cmsMessages}/>
     </header>
+    </>
   );
 }

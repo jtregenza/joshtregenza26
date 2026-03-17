@@ -162,6 +162,12 @@ a.secondary {
 @media (max-width: 600px) {
   .main {
     padding: 48px 24px;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  .headline {
+    left: 26svw;
   }
 
   .intro {
