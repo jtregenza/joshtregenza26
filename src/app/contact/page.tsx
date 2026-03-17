@@ -81,6 +81,7 @@ export default function ContactPage() {
 
           {/* Name */}
           <div className={styles.formGroup}>
+            <label htmlFor="name" className={styles.label}>Your Name</label>
             <input
               type="text"
               name="name"
@@ -94,6 +95,7 @@ export default function ContactPage() {
 
           {/* Email */}
           <div className={styles.formGroup}>
+            <label htmlFor="email" className={styles.label}>Your Email Address</label>
             <input
               type="email"
               name="email"
@@ -109,7 +111,7 @@ export default function ContactPage() {
 
           {/* Services */}
           <div className={styles.formGroup}>
-            <label className={styles.label}>What services do you need?</label>
+            <label htmlFor="services" className={styles.label}>What services do you need?</label>
             <div className={styles.checkboxGroup}>
               {['Development', 'Design', 'Voice Acting', 'Coaching'].map(service => (
                 <label key={service} className={styles.checkbox}>
@@ -129,6 +131,7 @@ export default function ContactPage() {
 
           {/* Message */}
           <div className={styles.formGroup}>
+            <label htmlFor="message" className={styles.label}>Your Message</label>
             <textarea
               name="message"
               placeholder="Message"
