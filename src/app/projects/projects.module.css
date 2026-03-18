@@ -257,3 +257,9 @@ audio::-webkit-media-controls-play-button, video::-webkit-media-controls-play-bu
 .projectCard:hover .cardContent{
     opacity: 1;
 }
+
+@media (max-width: 789px) {
+    .cardContainer {
+        grid-template-columns: 1fr;
+    }
+}

@@ -159,7 +159,7 @@ a.secondary {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 789px) {
   .main {
     padding: 48px 24px;
     flex-direction: column;
@@ -167,7 +167,12 @@ a.secondary {
   }
 
   .headline {
-    left: 26svw;
+    right: -3rem;
+    left: unset;
+    transform: unset;
+    position: unset;
+    font-size: 2.5rem;
+    padding: 2rem;
   }
 
   .intro {

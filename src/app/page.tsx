@@ -4,8 +4,10 @@ import TimeBasedGradient from "../../components/background";
 
 export default function Home() {
   return (
+    <>
+    <h1 className={styles.headline}>Josh Tregenza</h1>
     <div className={styles.page}>
-                <h1 className={styles.headline}>Josh Tregenza</h1>
+      
       <main className={styles.main}>
         <div className={styles.imageArea}>
           <div className={styles.headImage}>
@@ -27,6 +29,6 @@ export default function Home() {
       </main>
           
     </div>
-
+</>
   );
 }
