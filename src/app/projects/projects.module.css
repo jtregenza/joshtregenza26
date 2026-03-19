@@ -54,6 +54,7 @@
 .mainContent {
     display: flex; 
     align-items: flex-end;
+    flex-wrap: wrap;
     gap: 2rem;
     width: 100%;
 } 
@@ -64,7 +65,7 @@
     padding: 4rem 3rem;
     background: rgba(255,255,255,0.8);
     color: var(--background);
-    width: 40svw;
+    width: clamp(20rem, 40svw, 70rem);
     max-height: 85svh;
     height: 100%;
     overflow-y: auto;
@@ -261,5 +262,8 @@ audio::-webkit-media-controls-play-button, video::-webkit-media-controls-play-bu
 @media (max-width: 789px) {
     .cardContainer {
         grid-template-columns: 1fr;
+    }
+    .mainContent {
+        flex-direction: column;
     }
 }
