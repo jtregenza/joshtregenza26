@@ -134,3 +134,266 @@
 .experimentIcon:hover::after {
     opacity: 1;
 }
+
+
+/* app/lab/lab.module.css */
+
+.labDetail {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.labHeader {
+  margin-bottom: 3rem;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.statusBadge[data-status="prototype"] {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.statusBadge[data-status="in-progress"] {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.statusBadge[data-status="completed"] {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.statusBadge[data-status="archived"] {
+  background: #f5f5f5;
+  color: #757575;
+}
+
+.labTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+  /* color: #0f1419; */
+}
+
+.labDescription {
+  font-size: 1.25rem;
+  /* color: #536471; */
+  line-height: 1.6;
+  margin: 0;
+}
+
+.labMedia {
+  margin-bottom: 3rem;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.labImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.externalLink {
+  margin-bottom: 3rem;
+}
+
+.externalButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  /* box-shadow: 0 2px 8px rgba(0, 112, 243, 0.2); */
+}
+
+.externalButton:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.externalButton svg {
+  width: 20px;
+  height: 20px;
+}
+
+.labContent {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  /* color: #0f1419; */
+  margin-bottom: 3rem;
+}
+
+.labContent h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
+  /* color: #0f1419; */
+}
+
+.labContent h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  /* color: #0f1419; */
+}
+
+.labContent p {
+  margin: 1.25rem 0;
+}
+
+.labContent ul,
+.labContent ol {
+  margin: 1.25rem 0;
+  padding-left: 2rem;
+}
+
+.labContent li {
+  margin: 0.5rem 0;
+}
+
+.labContent a {
+  color: #0070f3;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.labContent a:hover {
+  border-bottom-color: #0070f3;
+}
+
+.labContent code {
+  background: #f5f5f5;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: 'Courier New', monospace;
+}
+
+.labContent pre {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.labContent pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+.labContent blockquote {
+  border-left: 4px solid #0070f3;
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  color: #536471;
+  font-style: italic;
+}
+
+.labContent img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.labTags {
+  padding-top: 2rem;
+  border-top: 1px solid #eff3f4;
+}
+
+.labTags h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: #0f1419;
+}
+
+.tagList {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #f0f0f0;
+  color: #333;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.tag:hover {
+  background: #e0e0e0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .labDetail {
+    padding: 2rem 1rem;
+  }
+
+  .labTitle {
+    font-size: 2rem;
+  }
+
+  .labDescription {
+    font-size: 1rem;
+  }
+
+  .labContent {
+    font-size: 1rem;
+  }
+
+  .labContent h2 {
+    font-size: 1.5rem;
+  }
+
+  .labContent h3 {
+    font-size: 1.25rem;
+  }
+
+  .externalButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .labTitle {
+    font-size: 1.75rem;
+  }
+
+  .statusBadge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+  }
+}

@@ -4,9 +4,8 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Markdoc from '@markdoc/markdoc';
 import React from 'react';
-import dynamic from 'next/dynamic';
 
-// const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
+import styles from '../lab.module.css';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -37,68 +36,74 @@ export default async function LabDetailPage({
   
   const renderable = Markdoc.transform(node);
 
+  // Prioritize video over audio over image
+  const mediaUrl = item.videoUrl || item.audioUrl;
+
   return (
-    <article>
-      {item.featuredImage && (
-        <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+    <article className={styles.labDetail}>
+      <div className={styles.labHeader}>
+        <div className={styles.statusBadge} data-status={item.status}>
+          {item.status}
+        </div>
+        <h1 className={styles.labTitle}>{item.title}</h1>
+        <p className={styles.labDescription}>{item.description}</p>
+      </div>
+
+      {/* Media Section */}
+      {mediaUrl ? (
+        <div className={styles.labMedia}>
+          {/* <MediaPlayer 
+            mediaUrl={mediaUrl} 
+            mediaPoster={item.featuredImage || undefined}
+          /> */}
+        </div>
+      ) : item.featuredImage ? (
+        <div className={styles.labMedia}>
           <Image
             src={item.featuredImage}
             alt={item.title}
-            fill
-            style={{ objectFit: 'cover' }}
+            width={1200}
+            height={675}
+            className={styles.labImage}
           />
         </div>
-      )}
+      ) : null}
 
-      <h1>{item.title}</h1>
-      <p><strong>Status:</strong> {item.status}</p>
-      <p>{item.description}</p>
-
+      {/* External Link */}
       {item.externalUrl && (
-        <div>
+        <div className={styles.externalLink}>
           <a 
             href={item.externalUrl} 
             target="_blank" 
             rel="noopener noreferrer"
+            className={styles.externalButton}
           >
-            View External Link
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            View Live Project
           </a>
         </div>
       )}
 
-      {item.videoUrl && (
-        <div>
-          {/* <ReactPlayer 
-            url={item.videoUrl || ''} 
-            controls 
-            width="100%"
-            height="500px"
-          /> */}
-        </div>
-      )}
-
-      {item.audioUrl && (
-        <div>
-          {/* <ReactPlayer 
-            url={item.audioUrl || ''} 
-            controls 
-            width="100%"
-            height="80px"
-          /> */}
-        </div>
-      )}
-
-      <div>
+      {/* Content */}
+      <div className={styles.labContent}>
         {Markdoc.renderers.react(renderable, React)}
       </div>
 
+      {/* Tags */}
       {item.tags && item.tags.length > 0 && (
-        <div>
-          {item.tags.map((tag) => (
-            <span key={tag}>
-              {tag}
-            </span>
-          ))}
+        <div className={styles.labTags}>
+          <h3>Tags</h3>
+          <div className={styles.tagList}>
+            {item.tags.map((tag) => (
+              <span key={tag} className={styles.tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       )}
     </article>
