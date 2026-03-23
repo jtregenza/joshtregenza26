@@ -16,6 +16,29 @@ export async function generateStaticParams() {
   }));
 }
 
+function getVideoEmbedUrl(url: string): { type: 'embed' | 'native'; embedUrl: string } | null {
+  // YouTube
+  const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+  const youtubeMatch = url.match(youtubeRegex);
+  if (youtubeMatch) {
+    return { type: 'embed', embedUrl: `https://www.youtube.com/embed/${youtubeMatch[1]}` };
+  }
+
+  // Vimeo
+  const vimeoRegex = /vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/;
+  const vimeoMatch = url.match(vimeoRegex);
+  if (vimeoMatch) {
+    return { type: 'embed', embedUrl: `https://player.vimeo.com/video/${vimeoMatch[3]}` };
+  }
+
+  // Direct video file
+  if (url.match(/\.(mp4|webm|ogg)$/i)) {
+    return { type: 'native', embedUrl: url };
+  }
+
+  return null;
+}
+
 export default async function LabDetailPage({ 
   params 
 }: { 
@@ -38,6 +61,7 @@ export default async function LabDetailPage({
 
   // Prioritize video over audio over image
   const mediaUrl = item.videoUrl || item.audioUrl;
+  const videoEmbed = item.videoUrl ? getVideoEmbedUrl(item.videoUrl) : null;
 
   return (
     <article className={styles.labDetail}>
@@ -52,10 +76,25 @@ export default async function LabDetailPage({
       {/* Media Section */}
       {mediaUrl ? (
         <div className={styles.labMedia}>
-          {/* <MediaPlayer 
-            mediaUrl={mediaUrl} 
-            mediaPoster={item.featuredImage || undefined}
-          /> */}
+          {videoEmbed.type === 'embed' ? (
+            <iframe 
+              src={videoEmbed.embedUrl}
+              width="100%" 
+              height="500"
+              style={{ border: 'none', borderRadius: '8px' }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <video 
+              controls 
+              width="100%" 
+              style={{ maxWidth: '100%', borderRadius: '8px' }}
+            >
+              <source src={videoEmbed.embedUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
         </div>
       ) : item.featuredImage ? (
         <div className={styles.labMedia}>
