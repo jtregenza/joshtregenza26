@@ -27,7 +27,13 @@ export default function ProcessTimeline({ items }: ProcessTimelineProps) {
   const isMainPage = pathname === '/process';
   const currentSlug = pathname.split('/').pop();
   
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState('design');
+
+  // Get categories that have processes
+  const availableCategories = useMemo(() => {
+    const categoriesWithItems = new Set(items.map(item => item.category));
+    return CATEGORIES.filter(cat => categoriesWithItems.has(cat.value));
+  }, [items]);
 
   // Filter items based on selected category
   const filteredItems = useMemo(() => {
@@ -42,32 +48,33 @@ export default function ProcessTimeline({ items }: ProcessTimelineProps) {
   return (
     <div className={isMainPage ? styles.timelineContainerMain : styles.timelineContainerCompact}>
       {/* Category Selector */}
-
-        {isMainPage && (
+      {isMainPage && availableCategories.length > 0 && (
         <>
-        <h1>Select the Process Type</h1>
-        <div className={styles.categorySelector}>
-          {CATEGORIES.map(cat => (
-            <button
-              key={cat.value}
-              className={`${styles.categoryButton} ${selectedCategory === cat.value ? styles.categoryButtonActive : ''}`}
-              onClick={() => setSelectedCategory(cat.value)}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
+          <h1>Select the Process Type</h1>
+          <div className={styles.categorySelector}>
+            {availableCategories.map(cat => (
+              <button
+                key={cat.value}
+                className={`${styles.categoryButton} ${selectedCategory === cat.value ? styles.categoryButtonActive : ''}`}
+                onClick={() => setSelectedCategory(cat.value)}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
         </>
       )}
 
       {/* Compact category indicator on detail pages */}
       {!isMainPage && currentItem && (
         <Link 
-        className={styles.backProcess}
-        href="/process">← Back</Link>
+          className={styles.backProcess}
+          href="/process"
+        >
+          ← Back
+        </Link>
       )}
 
-        
       <div className={styles.timeline}>
         {filteredItems.map((item, index) => {
           const isActive = pathname.includes(item.slug);
@@ -78,12 +85,12 @@ export default function ProcessTimeline({ items }: ProcessTimelineProps) {
               href={`/process/${item.slug}`}
               className={`${styles.timelineNode} ${isActive ? styles.timelineNodeActive : ''}`}
             >
-                <span className={styles.nodeNumber}>{index + 1}</span> <span className={styles.nodeLabel}>{item.title}</span>
+              <span className={styles.nodeNumber}>{index + 1}</span> 
+              <span className={styles.nodeLabel}>{item.title}</span>
             </Link>
           );
         })}
       </div>
-
     </div>
   );
 }
