@@ -60,7 +60,7 @@ export default async function LabDetailPage({
   const renderable = Markdoc.transform(node);
 
   // Prioritize video over audio over image
-  const mediaUrl = item.videoUrl || item.audioUrl;
+  // const mediaUrl = item.videoUrl || item.audioUrl;
   const videoEmbed = item.videoUrl ? getVideoEmbedUrl(item.videoUrl) : null;
 
   return (
@@ -74,7 +74,7 @@ export default async function LabDetailPage({
       </div>
 
       {/* Media Section */}
-      {mediaUrl ? (
+      {item.videoUrl && videoEmbed ? (
         <div className={styles.labMedia}>
           {videoEmbed.type === 'embed' ? (
             <iframe 
