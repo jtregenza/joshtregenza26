@@ -12,7 +12,7 @@ interface NavProps {
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/projects', label: 'Portfolio' },
-  { href: '/voice', label: 'Voice Acting' },
+  // { href: '/voice', label: 'Voice Acting' },
   { href: '/lab', label: 'Lab' },
   { href: '/musings', label: 'Musings' },
   { href: '/process', label: 'Process' },
