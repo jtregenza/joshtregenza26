@@ -89,6 +89,10 @@
     font-size: 3rem;
 }
 
+.coreContent img {
+    width: 100%;
+}
+
 .coreContent h2,
 .coreContent h3,
 .coreContent h4 {
