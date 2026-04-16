@@ -49,8 +49,8 @@
     width: 100%;
     height: calc(100vh - 100px);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    /* justify-content: center; */
 }
 
 /* Left diagonal section (dark) */
