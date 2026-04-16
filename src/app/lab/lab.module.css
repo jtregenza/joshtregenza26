@@ -34,7 +34,7 @@
 
 /* Lab landing page styles */
 .labLanding {
-    min-height: calc(100vh - 100px);
+    /* min-height: calc(100vh - 100px); */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,29 +82,40 @@
 
 
 .iconsContainer {
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 2;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(4, 7rem);
+    /* grid-auto-rows: 8rem; */
+    gap: 2rem;
+    height: min-content;
 }
 
 .experimentIcon {
-    position: absolute;
+    /* position: absolute; */
+    width: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
     cursor: pointer;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .experimentIcon:hover {
-    transform: scale(1.15);
-    opacity: 0.9;
+    /* transform: scale(1.15); */
+    opacity: 0.8;
 }
 
 .experimentIcon svg,
 .experimentIcon img {
-    width: 48px;
-    height: 48px;
+    width: 3rem;
+    height: 3rem;
     display: block;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
@@ -114,25 +125,26 @@
 /* Tooltip for experiment names */
 .experimentIcon::after {
     content: attr(data-title);
-    position: absolute;
-    top: 100%;
-    left: 0;
+    /* position: absolute; */
     /* right: 0; */
-    transform: translateX(-25%);
-    background: rgba(0, 0, 0, 0.85);
+    /* transform: translateX(-25%); */
+    /* background: rgba(0, 0, 0, 0.25); */
     color: white;
-    padding: 6px 10px;
+    /* padding: 2px 2px; */
+    width: 100%;
     border-radius: 0.25rem;
-    font-size: 0.75rem;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
+    font-size: 0.65rem;
+    line-height: 1.4;
+    /* white-space: nowrap; */
+    /* max-width: 8ch; */
+    opacity: 1;
+    /* pointer-events: none; */
     transition: opacity 0.2s;
     z-index: 10;
 }
 
 .experimentIcon:hover::after {
-    opacity: 1;
+    /* opacity: 1; */
 }
 
 

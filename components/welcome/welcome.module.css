@@ -1,6 +1,6 @@
 .welcomeText {
     position: absolute;
-    bottom: 4rem;
+    bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
     /* color: #d4af37; */
@@ -12,7 +12,7 @@
     z-index: 3;
     white-space: nowrap;
     width: 100%;
-    text-align: center;
+    text-align: left;
 }
 
 .staticText {

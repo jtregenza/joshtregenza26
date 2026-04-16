@@ -161,7 +161,7 @@ export default async function LabPage() {
     <div className={styles.labLanding}>
       <div className={styles.pyramidWrapper}></div>
         <div className={styles.pyramidContainer}>
-          <InvertedPyramid/>
+          {/* <InvertedPyramid/> */}
         </div>
       <div className={styles.diagonalContainer}>
 
@@ -171,9 +171,7 @@ export default async function LabPage() {
           {/* Left diagonal icons */}
           {leftExperiments.map((item, index) => {
             // Position icons along left diagonal (top-left to center-bottom)
-            const percentage = (index / (leftExperiments.length - 1 || 1)) * 60;
-            const top = `${percentage}%`;
-            const left = `${percentage / 2}%`;
+            
             
             return (
               <Link
@@ -181,7 +179,6 @@ export default async function LabPage() {
                 href={`/lab/${item.slug}`}
                 className={styles.experimentIcon}
                 data-title={item.entry.title}
-                style={{ top, left }}
               >
                 <ExperimentIcon type={item.entry.status || 'default'} index={index} />
               </Link>
@@ -191,9 +188,7 @@ export default async function LabPage() {
           {/* Right diagonal icons */}
           {rightExperiments.map((item, index) => {
             // Position icons along right diagonal (top-right to center-bottom)
-            const percentage = (index / (rightExperiments.length - 1 || 1)) * 60;
-            const top = `${percentage}%`;
-            const right = `${percentage / 2}%`;
+           
             
             return (
               <Link
@@ -201,7 +196,6 @@ export default async function LabPage() {
                 href={`/lab/${item.slug}`}
                 className={styles.experimentIcon}
                 data-title={item.entry.title}
-                style={{ top, right }}
               >
                 <ExperimentIcon 
                   type={item.entry.status || 'default'} 
